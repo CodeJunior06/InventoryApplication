@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">InventoryApplication</string>
+    <string name="sistema_de_gestion_de_inventario">Sistema de gestion de inventario</string>
+    <string name="welcome">Bienvenido</string>
 </resources>
