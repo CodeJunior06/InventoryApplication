@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InventoryApplication">
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
