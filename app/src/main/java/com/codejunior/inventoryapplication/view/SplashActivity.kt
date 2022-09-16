@@ -1,12 +1,11 @@
-package com.codejunior.inventoryapplication
+package com.codejunior.inventoryapplication.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.core.view.ContentInfoCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivitySplashBinding
 
 
