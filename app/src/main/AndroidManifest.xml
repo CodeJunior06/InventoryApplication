@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InventoryApplication">
         <activity
-            android:name=".view.RegisterActivity"
-            android:exported="true" />
-        <activity
             android:name=".view.LoginActivity"
             android:exported="false" />
         <activity
