@@ -1,18 +1,22 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.job
 
 @HiltViewModel
 class LoginViewModel : ViewModel() {
 
-    val adminLogin: MutableLiveData<Boolean> = MutableLiveData()
+    private val _isToast: MutableLiveData<String> = MutableLiveData()
+    val isToast:LiveData<String>  get() =  _isToast
 
 
-    fun initAuthentication(){
+    fun initAuthentication(email:String , pass:String){
 
+        if(email.isEmpty()){
+        }
     }
 }
 
