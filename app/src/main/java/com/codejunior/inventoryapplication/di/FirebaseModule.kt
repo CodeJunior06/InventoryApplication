@@ -1,4 +1,4 @@
-package com.codejunior.inventoryapplication.DI
+package com.codejunior.inventoryapplication.di
 
 
 import com.codejunior.inventoryapplication.model.db.FirebaseRepository
@@ -17,7 +17,7 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirestoreInstance(): FirebaseAuth{
+    fun provideFirestoreInstance(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }
 

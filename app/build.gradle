@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.codejunior.inventoryapplication"
@@ -32,12 +32,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    kotlinOptions {
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
+    }
     viewBinding {
         enabled = true
     }
 }
 
 dependencies {
+    //FirebaseAuth
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    //ViewModel to Activity
     implementation("androidx.activity:activity-ktx:1.5.0")
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0"
@@ -53,7 +61,7 @@ dependencies {
     testImplementation 'com.google.dagger:hilt-android-testing:2.42'
     kaptTest 'com.google.dagger:hilt-compiler:2.42'
     //firebase
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation platform('com.google.firebase:firebase-bom:30.4.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     //lottie
     implementation "com.airbnb.android:lottie:3.5.0"
