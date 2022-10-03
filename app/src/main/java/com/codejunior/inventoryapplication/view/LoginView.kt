@@ -6,15 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
+import com.codejunior.inventoryapplication.viewmodel.FactoryLogin
 import com.codejunior.inventoryapplication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginView: AppCompatActivity() {
 
     private lateinit var _binding: ActivityLoginBinding
     private val binding get() = _binding
-    private val loginViewModel: LoginViewModel by viewModels { ViewModelProvider.Factory.from() }
+    private val loginViewModel: LoginViewModel by viewModels { FactoryLogin() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

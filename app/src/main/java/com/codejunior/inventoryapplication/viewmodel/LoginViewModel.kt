@@ -1,13 +1,12 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.*
+import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.job
+import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel : ViewModel() {
+class LoginViewModel @Inject constructor() : ViewModel() {
 
     private val _isToast: MutableLiveData<String> = MutableLiveData()
     val isToast:LiveData<String>  get() =  _isToast
@@ -16,13 +15,7 @@ class LoginViewModel : ViewModel() {
     fun initAuthentication(email:String , pass:String){
 
         if(email.isEmpty()){
+
         }
     }
 }
-
-/*@Suppress("UNCHECKED_CAST")
-class FactoryLogin : ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel() as T
-    }
-}*/
