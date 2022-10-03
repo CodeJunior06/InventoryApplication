@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivitySplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 @SuppressLint("CustomSplashScreen")
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private var _binding: ActivitySplashBinding? = null

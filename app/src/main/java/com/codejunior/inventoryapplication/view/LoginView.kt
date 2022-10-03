@@ -1,13 +1,34 @@
 package com.codejunior.inventoryapplication.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.codejunior.inventoryapplication.R
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
+import com.codejunior.inventoryapplication.viewmodel.LoginViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginView : AppCompatActivity() {
+@AndroidEntryPoint
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var _binding: ActivityLoginBinding
+    private val binding get() = _binding
+    private val loginViewModel: LoginViewModel by viewModels { ViewModelProvider.Factory.from() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.btnIniciarSession.setOnClickListener {
+            loginViewModel.initAuthentication(
+                binding.txtInputMail.editText.toString(),
+                binding.txtInputPass.editText.toString()
+            )
+        }
+        loginViewModel.isToast.observe(this, Observer { toast ->
+
+        })
     }
 
     override fun onStart() {

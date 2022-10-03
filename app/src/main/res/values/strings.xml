@@ -8,4 +8,5 @@
     <string name="products">Productos</string>
     <string name="sales">Ventas</string>
     <string name="kardex">Kardex</string>
+    <string name="emptyEmail">Email Field Is Empty, Please Entry Value</string>
 </resources>
