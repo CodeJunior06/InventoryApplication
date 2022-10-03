@@ -31,7 +31,7 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val i = Intent(context, LoginActivity::class.java)
+                val i = Intent(context, LoginView::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 i.flags =  Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(i)

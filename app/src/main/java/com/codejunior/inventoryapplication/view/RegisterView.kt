@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import com.codejunior.inventoryapplication.databinding.ActivityRegisterBinding
 import com.codejunior.inventoryapplication.viewmodel.RegisterViewModel
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterView : AppCompatActivity() {
 
     private lateinit var _registerBinding: ActivityRegisterBinding
     private val registerBinding get() = _registerBinding
