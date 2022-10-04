@@ -1,12 +1,16 @@
 package com.codejunior.inventoryapplication.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+/*
 
 @Suppress("UNCHECKED_CAST")
-class FactoryLogin @ViewModelFactoryDsl constructor() : ViewModelProvider.Factory{
+class FactoryLogin @Inject constructor(val context: Context) : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel() as T
+        return LoginViewModel(context) as T
     }
-}
+}*/
