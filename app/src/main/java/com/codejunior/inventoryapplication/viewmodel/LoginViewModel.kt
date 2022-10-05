@@ -6,10 +6,11 @@ import androidx.lifecycle.*
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.model.LoginModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(val loginModel: LoginModel): ViewModel() {
+class LoginViewModel @Inject constructor(private val loginModel: LoginModel): ViewModel() {
     @SuppressLint("StaticFieldLeak")
     private var context:Context?  = null
     private val _isToast: MutableLiveData<String> = MutableLiveData()
@@ -17,10 +18,13 @@ class LoginViewModel @Inject constructor(val loginModel: LoginModel): ViewModel(
     val isToast:LiveData<String>  get() =  _isToast
     val navigate:LiveData<Boolean> get() = _navigate
 
-    fun initAuthentication(email:String , pass:String){
-        if(validFieldNotEmpty(email,pass) && loginModel.initSession(email, pass)){
+     fun initAuthentication(email:String, pass:String){
 
-        }
+         runBlocking {
+             if(validFieldNotEmpty(email,pass) && loginModel.initSession(email, pass)){
+                 _navigate.value = true
+             }
+         }
 
     }
 

@@ -12,7 +12,7 @@
         style="@style/rectangle_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,11 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="200dp"
+            android:layout_width="290dp"
             android:layout_height="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -57,12 +58,12 @@
             android:layout_height="47dp"
             android:layout_marginTop="150dp"
             android:hint="Email"
-            android:textColorHint="#D3FAFD"
+            android:textColorHint="#52C3B2"
             app:endIconDrawable="@drawable/mail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_sistema_gestion">
-        <!-- app:endIconDrawable="@drawable/mail"-->
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -76,7 +77,7 @@
             android:layout_height="47dp"
             android:layout_marginTop="20dp"
             android:hint="Password"
-            android:textColorHint="#D3FAFD"
+            android:textColorHint="#52C3B2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_input_mail">
@@ -87,12 +88,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/btnIniciarSession"
+        <Button
+            android:id="@+id/bill_back"
             android:layout_width="151dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/shape_button"
-            android:text="Iniciar sesion"
+            android:text="@string/iniciar_sesion"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

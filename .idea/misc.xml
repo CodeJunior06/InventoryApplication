@@ -3,11 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/drawable/icon_settings.xml" value="0.304" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/drawable/shape_background.xml" value="0.304" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/drawable/shape_button.xml" value="0.304" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/drawable/shape_button_list.xml" value="0.304" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/layout/activity_register.xml" value="0.3875" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/layout/item_button.xml" value="0.33" />
+        <entry key="..\:/Sebastian Ramirez/Documentos/personal/inventoryApp/InventoryApplication/app/src/main/res/layout/item_button_login.xml" value="0.67" />
         <entry key="..\:/Users/PEDRO/AndroidStudioProjects/Android/InventoryApplication/app/src/main/res/layout/activity_splash.xml" value="0.3484375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

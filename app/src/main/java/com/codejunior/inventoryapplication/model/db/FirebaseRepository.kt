@@ -5,5 +5,5 @@ import com.google.firebase.auth.FirebaseUser
 
 
 interface FirebaseRepository {
-     fun isSetAuthentication(userFirebase: UserFirebase) :FirebaseUser?
+     suspend fun isSetAuthentication(userFirebase: UserFirebase) :FirebaseUser?
 }

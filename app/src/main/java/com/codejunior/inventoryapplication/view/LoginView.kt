@@ -8,9 +8,12 @@ import com.codejunior.inventoryapplication.utils.extension.intentActivityMain
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 
 @AndroidEntryPoint
-class LoginView: AppCompatActivity() {
+class LoginView : AppCompatActivity() {
 
     private lateinit var _binding: ActivityLoginBinding
     private val binding get() = _binding
@@ -21,20 +24,22 @@ class LoginView: AppCompatActivity() {
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loginViewModel.getContext(this)
-        binding.btnIniciarSession.setOnClickListener {
+        binding.billBack.setOnClickListener {
+
+
             loginViewModel.initAuthentication(
                 binding.txtInputMail.editText!!.text.toString(),
                 binding.txtInputPass.editText!!.text.toString()
             )
         }
-        loginViewModel.isToast.observe(this, { error ->
+        loginViewModel.isToast.observe(this) { error ->
             toastMessage(error)
-        })
-        loginViewModel.navigate.observe(this, {
-            if(it){
-               startActivity(intentActivityMain())
+        }
+        loginViewModel.navigate.observe(this) {
+            if (it) {
+                startActivity(intentActivityMain())
             }
-        })
+        }
     }
 
     override fun onStart() {

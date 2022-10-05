@@ -3,13 +3,28 @@ package com.codejunior.inventoryapplication.model.db
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 
-class FirestoreImp @Inject constructor(private val authFirebase: FirebaseAuth) : FirebaseRepository {
+class FirestoreImp @Inject constructor(private val authFirebase: FirebaseAuth) :
+    FirebaseRepository {
 
-    override fun isSetAuthentication(userFirebase: UserFirebase): FirebaseUser? {
-        userFirebase.email?.let {
+    private var  result:FirebaseUser?= null
+
+    override suspend fun isSetAuthentication(userFirebase: UserFirebase): FirebaseUser? {
+
+
+        coroutineScope {
+            async {
+                result = authFirebase.signInWithEmailAndPassword(userFirebase.email, userFirebase.pass).result.user
+            }
+        }
+
+
+        /*userFirebase.email?.let {
             userFirebase.pass?.let { it1 ->
                 authFirebase.signInWithEmailAndPassword(it, it1).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -17,14 +32,13 @@ class FirestoreImp @Inject constructor(private val authFirebase: FirebaseAuth) :
                         println("PASAMOS POR SUCCESS")
                     } else {
                         println("PASAMOS POR ERROR")
-                        return@addOnCompleteListener
                     }
                 }
 
             }
-        }
+        }*/
         println("PASAMO")
-        return null
+        return result
     }
 
 }
