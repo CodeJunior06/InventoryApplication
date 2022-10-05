@@ -13,14 +13,9 @@ class LoginModel @Inject constructor(private val firebaseAuth: FirestoreImp) {
                 it.pass = pass
             }
         }
-        if(firebaseAuth.isSetAuthentication(user!!)!=null){
+        if(firebaseAuth.isSetAuthentication(user)!!.isSuccessful){
             return true
         }
         return false
     }
-}
-interface Interfaces{
-
-    fun callback()
-
 }
