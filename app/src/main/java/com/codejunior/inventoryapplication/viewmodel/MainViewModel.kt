@@ -1,4 +1,18 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-class MainViewModel {
+import com.codejunior.inventoryapplication.model.MainModel
+
+class MainViewModel : BaseViewModel() {
+
+    private val model = MainModel()
+
+    fun logout(){
+        model.signOut {
+            navigation.value = NAVIGATION.GO_LOGIN_VIEW
+        }
+    }
+
+    fun selectButton(){
+
+    }
 }

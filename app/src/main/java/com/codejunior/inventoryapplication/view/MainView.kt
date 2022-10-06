@@ -1,18 +1,51 @@
 package com.codejunior.inventoryapplication.view
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.adapter.ButtonAdapter
 import com.codejunior.inventoryapplication.adapter.ButtonData
 import com.codejunior.inventoryapplication.databinding.ActivityMainBinding
+import com.codejunior.inventoryapplication.viewmodel.MainViewModel
+import com.codejunior.inventoryapplication.viewmodel.NAVIGATION
+import com.codejunior.inventoryapplication.viewmodel.SUCCESS
+import com.proyeto.medicineapp.data.extensionfunctions.toast
 
 class MainView : AppCompatActivity() {
+
+
+    private val mainViewModel: MainViewModel by viewModels()
+
+    private val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityMainBinding.inflate(layoutInflater).apply {
+            lifecycleOwner = this@MainView
+            viewModelMain = mainViewModel
+
+            mainViewModel.success.observe(this@MainView) { success ->
+                when (success) {
+                    SUCCESS.LOG_OUT_SUCCESS -> {
+                        toast("sesion cerrada correctamente")
+                    }
+                }
+            }
+            mainViewModel.navigation.observe(this@MainView) { navigation ->
+                when (navigation) {
+                    NAVIGATION.GO_LOGIN_VIEW -> {
+                        val intent = Intent(context, LoginView::class.java)
+                        context.startActivity(intent)
+                        finish()
+                    }
+
+                }
+
+            }
 
             recyclerButtons.apply {
                 adapter = ButtonAdapter(listOf(

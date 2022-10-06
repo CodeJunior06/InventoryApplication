@@ -1,50 +1,36 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-import android.annotation.SuppressLint
-import android.content.Context
-import androidx.lifecycle.*
-import com.codejunior.inventoryapplication.R
+import androidx.lifecycle.MutableLiveData
 import com.codejunior.inventoryapplication.model.LoginModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.runBlocking
-import javax.inject.Inject
 
-@HiltViewModel
-class LoginViewModel @Inject constructor(private val loginModel: LoginModel): ViewModel() {
-    @SuppressLint("StaticFieldLeak")
-    private var context:Context?  = null
-    private val _isToast: MutableLiveData<String> = MutableLiveData()
-    private val _navigate:MutableLiveData<Boolean> = MutableLiveData()
-    val isToast:LiveData<String>  get() =  _isToast
-    val navigate:LiveData<Boolean> get() = _navigate
+class LoginViewModel : BaseViewModel() {
 
-     fun initAuthentication(email:String, pass:String){
+    val email: MutableLiveData<String> = MutableLiveData("")
+    val password: MutableLiveData<String> = MutableLiveData("")
 
-         runBlocking {
-             if(validFieldNotEmpty(email,pass) && loginModel.initSession(email, pass)){
-                 _navigate.value = true
-             }
-         }
-
+    init {
+        if (firebaseController.hasSession()) {
+            navigation.value = NAVIGATION.GO_MAIN_VIEW
+        }
     }
 
-    private fun validFieldNotEmpty(email:String, pass: String) : Boolean{
-        if(email.isEmpty() && pass.isEmpty()){
-            _isToast.value = context!!.getString(R.string.emptyEmailAndPassword)
-            return false
+    fun login() {
+        val emailLogin = email.value ?: ""
+        val passwordLogin = password.value ?: ""
+        try {
+            if (emailLogin.isEmpty()
+                || passwordLogin.isEmpty()
+            ) errores.value = ERROR.EMPTY_FIELDS
+            else {
+                val model = LoginModel(emailLogin, passwordLogin)
+                model.auth({
+                    navigation.value = NAVIGATION.GO_MAIN_VIEW
+                }, {
+                    errores.value = ERROR.WRONG_CREDENTIALS
+                })
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        if(email.isEmpty()){
-            _isToast.value = context!!.getString(R.string.emptyEmail)
-            return false
-        }
-        if(pass.isEmpty()){
-            _isToast.value = context!!.getString(R.string.emptyPassword)
-            return false
-        }
-        return true
-    }
-
-    fun getContext(context: Context){
-        this.context = context;
     }
 }
