@@ -6,5 +6,5 @@ import com.google.firebase.auth.AuthResult
 
 
 interface FirebaseRepository {
-     suspend fun isSetAuthentication(userFirebase: UserFirebase) : Task<AuthResult>?
+     suspend fun isSetAuthentication(userFirebase: UserFirebase) : Task<AuthResult>
 }

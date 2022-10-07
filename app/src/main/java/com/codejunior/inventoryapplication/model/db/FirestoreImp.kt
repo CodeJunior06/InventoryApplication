@@ -6,6 +6,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -13,17 +14,15 @@ import javax.inject.Inject
 class FirestoreImp @Inject constructor(private val authFirebase: FirebaseAuth) :
     FirebaseRepository {
 
-    private var  result: Task<AuthResult>? = null
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
-    override suspend fun isSetAuthentication(userFirebase: UserFirebase): Task<AuthResult>? {
-        result = null
-        withContext(dispatcher) {
-            result = authFirebase.signInWithEmailAndPassword(
-                userFirebase.email,
-                userFirebase.pass
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    override suspend fun isSetAuthentication(userFirebase: UserFirebase): Task<AuthResult> {
+        return withContext(dispatcher) {
+           authFirebase.signInWithEmailAndPassword(
+                userFirebase.email.toString().trim(),
+                userFirebase.pass.toString().trim()
             )
         }
-        return result
+
         /*userFirebase.email?.let {
             userFirebase.pass?.let { it1 ->
                 authFirebase.signInWithEmailAndPassword(it, it1).addOnCompleteListener { task ->

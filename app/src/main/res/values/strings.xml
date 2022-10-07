@@ -12,4 +12,5 @@
     <string name="emptyPassword">Password Field Is Empty, Please Entry Value</string>
     <string name="emptyEmailAndPassword">Email And Pass Field Is Empty, Please Entry Values</string>
     <string name="iniciar_sesion">Iniciar sesion</string>
+    <string name="err_firebase">ERROR FIREBASE</string>
 </resources>

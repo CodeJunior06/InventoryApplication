@@ -6,6 +6,8 @@ import androidx.lifecycle.*
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.model.LoginModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -20,12 +22,16 @@ class LoginViewModel @Inject constructor(private val loginModel: LoginModel): Vi
 
      fun initAuthentication(email:String, pass:String){
 
-         runBlocking {
+        val hilo =  viewModelScope.launch {
              if(validFieldNotEmpty(email,pass) && loginModel.initSession(email, pass)){
                  _navigate.value = true
+             }else{
+                 _isToast.value = context!!.getString(R.string.err_firebase)
              }
          }
-
+         println("HILO ${hilo.isActive}")
+         println("HILO ${hilo.isCancelled}")
+         println("HILO ${hilo.isCompleted}")
     }
 
     private fun validFieldNotEmpty(email:String, pass: String) : Boolean{
