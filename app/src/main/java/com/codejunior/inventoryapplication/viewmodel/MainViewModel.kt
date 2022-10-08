@@ -6,13 +6,9 @@ class MainViewModel : BaseViewModel() {
 
     private val model = MainModel()
 
-    fun logout(){
+    fun logout() {
         model.signOut {
             navigation.value = NAVIGATION.GO_LOGIN_VIEW
         }
-    }
-
-    fun selectButton(){
-
     }
 }

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.adapter.ButtonAdapter
@@ -16,8 +15,6 @@ import com.codejunior.inventoryapplication.viewmodel.SUCCESS
 import com.proyeto.medicineapp.data.extensionfunctions.toast
 
 class MainView : AppCompatActivity() {
-
-
     private val mainViewModel: MainViewModel by viewModels()
 
     private val context = this
@@ -42,18 +39,34 @@ class MainView : AppCompatActivity() {
                         context.startActivity(intent)
                         finish()
                     }
-
+                    NAVIGATION.GO_PROVIDERS_VIEW -> {
+                        val intent = Intent(context, ProviderView::class.java)
+                        context.startActivity(intent)
+                    }
+                    NAVIGATION.GO_PRODUCTS_VIEW -> {
+                        val intent = Intent(context, ProductsView::class.java)
+                        context.startActivity(intent)
+                    }
                 }
-
             }
 
             recyclerButtons.apply {
                 adapter = ButtonAdapter(listOf(
-                    ButtonData(context.getString(R.string.providers), R.drawable.proveedores_icon),
-                    ButtonData(context.getString(R.string.categories), R.drawable.categorias_icon),
-                    ButtonData(context.getString(R.string.products), R.drawable.product_icon),
-                    ButtonData(context.getString(R.string.sales), R.drawable.ventas_icon),
-                    ButtonData(context.getString(R.string.kardex), R.drawable.kardex_icon)))
+                    ButtonData(context.getString(R.string.providers), R.drawable.proveedores_icon) {
+                        mainViewModel.navigation.postValue(NAVIGATION.GO_PROVIDERS_VIEW)
+                    },
+                    ButtonData(context.getString(R.string.categories), R.drawable.categorias_icon) {
+
+                    },
+                    ButtonData(context.getString(R.string.products), R.drawable.product_icon) {
+                        mainViewModel.navigation.postValue(NAVIGATION.GO_PRODUCTS_VIEW)
+                    },
+                    ButtonData(context.getString(R.string.sales), R.drawable.ventas_icon) {
+
+                    },
+                    ButtonData(context.getString(R.string.kardex), R.drawable.kardex_icon) {
+
+                    }))
                 layoutManager = LinearLayoutManager(this@MainView)
             }
 

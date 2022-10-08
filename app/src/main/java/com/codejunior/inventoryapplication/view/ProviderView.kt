@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivityProveedoresBinding
 import com.codejunior.inventoryapplication.viewmodel.ProveedoresViewModel
 
-class ProveedoresView : AppCompatActivity() {
+class ProviderView : AppCompatActivity() {
     private lateinit var binding: ActivityProveedoresBinding
 
-    private val proveedoresBinding: ProveedoresViewModel by viewModels()
+    private val proveedoresViewModel: ProveedoresViewModel by viewModels()
 
     private val context = this
 
@@ -18,6 +18,11 @@ class ProveedoresView : AppCompatActivity() {
         binding = ActivityProveedoresBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.lifecycleOwner = this
-        binding.viewModelProveedores = proveedoresBinding
+        binding.viewModelProveedores = proveedoresViewModel
+    }
+
+    override fun onStart() {
+        super.onStart()
+        ManageSystemUI.hideSystemUI(window)
     }
 }

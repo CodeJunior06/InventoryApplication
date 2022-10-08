@@ -17,6 +17,12 @@
             android:name=".view.MainView"
             android:exported="false" />
         <activity
+            android:name=".view.ProviderView"
+            android:exported="false" />
+        <activity
+            android:name=".view.ProductsView"
+            android:exported="false" />
+        <activity
             android:name=".view.SplashActivity"
             android:exported="true">
             <intent-filter>

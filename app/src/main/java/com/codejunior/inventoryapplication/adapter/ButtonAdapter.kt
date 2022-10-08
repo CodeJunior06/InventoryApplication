@@ -1,16 +1,16 @@
 package com.codejunior.inventoryapplication.adapter
 
-import android.graphics.drawable.Icon
-import android.media.Image
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codejunior.inventoryapplication.databinding.ItemButtonBinding
 
-data class ButtonData(val label: String, val img: Int)
+data class ButtonData(val label: String, val img: Int, val onClick: (View) -> Unit)
 
-class ButtonAdapter(private val listButtons: List<ButtonData>) :
-    RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
+class ButtonAdapter(
+    private val listButtons: List<ButtonData>,
+) : RecyclerView.Adapter<ButtonAdapter.ButtonViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ButtonViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ButtonViewHolder(
@@ -26,9 +26,10 @@ class ButtonAdapter(private val listButtons: List<ButtonData>) :
 
     inner class ButtonViewHolder(private val binding: ItemButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ButtonData) {
-            binding.label.text = item.label
-            binding.icon.setImageResource(item.img)
+        fun bind(buttonData: ButtonData) {
+            binding.label.text = buttonData.label
+            binding.icon.setImageResource(buttonData.img)
+            binding.root.setOnClickListener(buttonData.onClick)
         }
     }
 }
