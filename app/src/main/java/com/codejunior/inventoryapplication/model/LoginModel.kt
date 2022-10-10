@@ -1,11 +1,11 @@
 package com.codejunior.inventoryapplication.model
 
 import com.codejunior.inventoryapplication.model.db.FirestoreImp
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import com.codejunior.inventoryapplication.network.FirebaseController
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class LoginModel @Inject constructor(private val firebaseAuth: FirestoreImp) {
     suspend fun initSession(email: String, pass: String): Boolean {
 

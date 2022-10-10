@@ -14,7 +14,7 @@ class FirebaseController {
         return instance.currentUser != null
     }
 
-    fun auth(model: LoginModel, success: () -> Unit, error: () -> Unit) {
+/*    fun auth(model: LoginModel, success: () -> Unit, error: () -> Unit) {
         instance.signInWithEmailAndPassword(model.email, model.password).addOnCompleteListener {
             if (it.isSuccessful) {
                 success.invoke()
@@ -22,7 +22,7 @@ class FirebaseController {
                 error.invoke()
             }
         }
-    }
+    }*/
 
     fun signOut(success: () -> Unit) {
         instance.signOut()

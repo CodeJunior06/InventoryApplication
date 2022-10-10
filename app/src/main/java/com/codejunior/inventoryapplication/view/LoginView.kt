@@ -5,10 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
-import com.codejunior.inventoryapplication.viewmodel.ERROR
-import com.codejunior.inventoryapplication.viewmodel.LoginViewModel
-import com.codejunior.inventoryapplication.viewmodel.NAVIGATION
-import com.codejunior.inventoryapplication.viewmodel.SUCCESS
+import com.codejunior.inventoryapplication.viewmodel.*
 import com.proyeto.medicineapp.data.extensionfunctions.toast
 
 class LoginView : AppCompatActivity() {
@@ -20,7 +17,7 @@ class LoginView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels{ FactoryLogin()}
 
     private val context = this
 

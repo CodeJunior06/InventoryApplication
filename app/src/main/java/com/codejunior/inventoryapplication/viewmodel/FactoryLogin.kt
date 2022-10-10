@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-/*
+
 
 @Suppress("UNCHECKED_CAST")
-class FactoryLogin @Inject constructor(val context: Context) : ViewModelProvider.Factory{
+class FactoryLogin @Inject constructor() : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return LoginViewModel(context) as T
+        return LoginViewModel(null) as T
     }
-}*/
+}

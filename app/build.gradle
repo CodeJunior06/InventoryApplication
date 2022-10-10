@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.codejunior.inventoryapplication"
-        minSdk 31
+        minSdk 28
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -42,6 +42,9 @@ android {
     }
     buildFeatures{
         dataBinding true
+    }
+    dataBinding{
+        enabled = true
     }
 }
 
