@@ -3,6 +3,7 @@ package com.codejunior.inventoryapplication.model
 import com.codejunior.inventoryapplication.model.db.FirestoreImp
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import com.codejunior.inventoryapplication.network.FirebaseController
 import javax.inject.Inject
 
 class LoginModel @Inject constructor(private val firebaseAuth: FirestoreImp) {
@@ -28,4 +29,5 @@ class LoginModel @Inject constructor(private val firebaseAuth: FirestoreImp) {
         println("A LA VERGA")
         return false
     }
+
 }

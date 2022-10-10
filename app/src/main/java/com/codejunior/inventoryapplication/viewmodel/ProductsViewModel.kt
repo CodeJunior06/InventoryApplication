@@ -1,4 +1,4 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-class ProductsViewModel {
+class ProductsViewModel : BaseViewModel() {
 }
