@@ -17,4 +17,5 @@
     <string name="availability">disponibilidad</string>
     <string name="stock">stock Minimo</string>
     <string name="save">Guardar</string>
+    <string name="image">Imagen</string>
 </resources>
