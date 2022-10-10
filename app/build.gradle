@@ -11,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId "com.codejunior.inventoryapplication"
-        minSdk 23
-        targetSdk 32
+        minSdk 31
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
