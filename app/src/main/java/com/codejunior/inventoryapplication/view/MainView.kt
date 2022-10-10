@@ -13,7 +13,9 @@ import com.codejunior.inventoryapplication.viewmodel.MainViewModel
 import com.codejunior.inventoryapplication.viewmodel.NAVIGATION
 import com.codejunior.inventoryapplication.viewmodel.SUCCESS
 import com.proyeto.medicineapp.data.extensionfunctions.toast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainView : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModels()
 

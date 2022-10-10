@@ -1,10 +1,12 @@
 package com.codejunior.inventoryapplication.model
 
+import com.codejunior.inventoryapplication.model.db.FirestoreImp
 import com.codejunior.inventoryapplication.network.FirebaseController
+import javax.inject.Inject
 
-class MainModel {
-    private val firebaseController = FirebaseController()
+class MainModel @Inject constructor(private val firestoreImp: FirestoreImp) {
+
     fun signOut(success: () -> Unit){
-        firebaseController.signOut(success)
+        firestoreImp.signOut(success)
     }
 }

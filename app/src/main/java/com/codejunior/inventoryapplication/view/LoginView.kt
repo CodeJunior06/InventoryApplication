@@ -8,6 +8,9 @@ import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
 import com.codejunior.inventoryapplication.viewmodel.*
 import com.proyeto.medicineapp.data.extensionfunctions.toast
 
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class LoginView : AppCompatActivity() {
 
     override fun onStart() {
@@ -17,7 +20,7 @@ class LoginView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private val loginViewModel: LoginViewModel by viewModels{ FactoryLogin()}
+    private val loginViewModel: LoginViewModel by viewModels()
 
     private val context = this
 

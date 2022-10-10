@@ -23,9 +23,9 @@ class LoginViewModel @Inject constructor(@Nullable private val loginModel: Login
 
         val hilo = viewModelScope.launch {
             if (validFieldNotEmpty(
-                    email.toString(),
-                    password.toString()
-                ) && loginModel!!.initSession(email.toString(), password.toString())
+                    email.value.toString(),
+                    password.value.toString()
+                ) && loginModel!!.initSession(email.value.toString(), password.value.toString())
             ) {
                 navigation.value = NAVIGATION.GO_MAIN_VIEW
             } else {
