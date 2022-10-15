@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context=".view.MainView">
+        tools:context=".view.ProductsView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -194,13 +194,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="@string/categories"
+                android:text="@string/costo_producto"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/guideline5"
                 app:layout_constraintTop_toBottomOf="@+id/edt_categories" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_presentation_of_the_product"
+                android:id="@+id/edt_coste"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

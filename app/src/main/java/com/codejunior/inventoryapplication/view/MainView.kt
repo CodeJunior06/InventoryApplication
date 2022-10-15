@@ -9,6 +9,7 @@ import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.adapter.ButtonAdapter
 import com.codejunior.inventoryapplication.adapter.ButtonData
 import com.codejunior.inventoryapplication.databinding.ActivityMainBinding
+import com.codejunior.inventoryapplication.viewmodel.BaseViewModel
 import com.codejunior.inventoryapplication.viewmodel.MainViewModel
 import com.codejunior.inventoryapplication.viewmodel.NAVIGATION
 import com.codejunior.inventoryapplication.viewmodel.SUCCESS

@@ -4,6 +4,9 @@ package com.codejunior.inventoryapplication.di
 import com.codejunior.inventoryapplication.model.db.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.FirestoreImp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,13 +20,20 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirestoreInstance(): FirebaseAuth {
+    fun provideFirebaseAuthInstance(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }
-
     @Provides
     @Singleton
-    fun provideInstanceInject(auth:FirebaseAuth): FirebaseRepository {
-        return FirestoreImp(auth)
+    fun provideFirestoreInstance(): FirebaseFirestore {
+        return Firebase.firestore
     }
+    @Provides
+    @Singleton
+    fun provideInstanceInject(auth:FirebaseAuth,dataBase:FirebaseFirestore): FirebaseRepository {
+        return FirestoreImp(auth,dataBase)
+    }
+
+
+
 }

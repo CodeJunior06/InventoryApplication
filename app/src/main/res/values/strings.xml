@@ -5,6 +5,7 @@
     <string name="bienvenido_administrador">Bienvenido Administrador</string>
     <string name="providers">Proveedores</string>
     <string name="categories">Categorías</string>
+    <string name="costo_producto">Costo Del Producto</string>
     <string name="products">Productos</string>
     <string name="sales">Ventas</string>
     <string name="kardex">Kardex</string>
