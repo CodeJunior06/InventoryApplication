@@ -9,7 +9,7 @@ import com.codejunior.inventoryapplication.viewmodel.ProveedoresViewModel
 class ProviderView : AppCompatActivity() {
     private lateinit var binding: ActivityProveedoresBinding
 
-    private val proveedoresViewModel: ProveedoresViewModel by viewModels()
+    private val providersViewModel: ProveedoresViewModel by viewModels()
 
     private val context = this
 
@@ -18,7 +18,7 @@ class ProviderView : AppCompatActivity() {
         binding = ActivityProveedoresBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.lifecycleOwner = this
-        binding.viewModelProveedores = proveedoresViewModel
+        binding.viewModelProveedores = providersViewModel
     }
 
     override fun onStart() {

@@ -19,4 +19,13 @@
     <string name="save">Guardar</string>
     <string name="image">Imagen</string>
     <string name="err_firebase">ERROR FIREBASE</string>
+    <string name="add_providers">Agregar Proveedores</string>
+    <string name="list_providers">Lista de proveedores</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="doc_type">Tipo de documento</string>
+    <string name="document_number">Número de documento</string>
+    <string name="telphone_number">Teléfono</string>
+    <string name="e_mail">E-mail</string>
+    <string name="address">Dirección</string>
 </resources>
