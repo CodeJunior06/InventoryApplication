@@ -36,30 +36,29 @@ class ProductsView : AppCompatActivity() {
             )
             productsViewModel.validProduct(lst)
         }
-        productsViewModel.navigation.observe(this, {
+        productsViewModel.navigation.observe(this) {
             when (it) {
                 NAVIGATION.GO_MAIN_VIEW -> {
                     startActivity(Intent(this, MainView::class.java))
                 }
             }
-        })
-        productsViewModel.errores.observe(this, {
+        }
+        productsViewModel.errores.observe(this) {
             when (it) {
                 ERROR.EMPTY_FIELDS -> {
                     toastMessage("EMPTY FIELD")
                 }
             }
-        })
+        }
 
-        productsViewModel.success.observe(this, {
+        productsViewModel.success.observe(this) {
             when (it) {
-
                 SUCCESS.PRODUCT_REGISTER_COMPLETE -> {
                     toastMessage("SE INGRESO CORRECTAMENTE EL PRODUCTO")
 
                 }
             }
-        })
+        }
     }
 
     override fun onStart() {
