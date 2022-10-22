@@ -14,7 +14,9 @@ import com.codejunior.inventoryapplication.databinding.ActivityProveedoresBindin
 import com.codejunior.inventoryapplication.view.fragments.FragmentAddProviders
 import com.codejunior.inventoryapplication.view.fragments.FragmentListProviders
 import com.codejunior.inventoryapplication.viewmodel.ProveedoresViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProviderView : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var binding: ActivityProveedoresBinding

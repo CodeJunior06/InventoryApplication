@@ -1,6 +1,6 @@
 package com.codejunior.inventoryapplication.model
 
-import com.codejunior.inventoryapplication.Producto
+import com.codejunior.inventoryapplication.model.db.model.Producto
 import com.codejunior.inventoryapplication.model.db.FirestoreImp
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
