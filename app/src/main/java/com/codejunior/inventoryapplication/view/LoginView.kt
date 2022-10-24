@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
+import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.*
-import com.proyeto.medicineapp.data.extensionfunctions.toast
 
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,44 +18,38 @@ class LoginView : AppCompatActivity() {
         ManageSystemUI.hideSystemUI(window)
     }
 
-    private lateinit var binding: ActivityLoginBinding
-
+    private var _binding: ActivityLoginBinding? = null
+    private val binding get() =  _binding
     private val loginViewModel: LoginViewModel by viewModels()
 
     private val context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.lifecycleOwner = this
-        binding.viewModelLogin = loginViewModel
+        _binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
+        binding!!.lifecycleOwner = this
+        binding!!.viewModelLogin = loginViewModel
 
-        loginViewModel.errores.observe(this) {
-            when (it) {
-                ERROR.EMPTY_FIELDS -> {
-                    toast("No deje campos vacios")
-                }
-                ERROR.WRONG_CREDENTIALS -> {
-                    toast("credenciales invalidas")
-                }
-            }
+        loginViewModel.error.observe(this) {
+            toastMessage(it)
         }
         loginViewModel.success.observe(this) {
-            when (it) {
-                SUCCESS.LOGIN_SUCCES -> {
-                    toast("login correcto")
-                }
-            }
+            toastMessage(it)
         }
         loginViewModel.navigation.observe(this) {
             when (it) {
-                NAVIGATION.GO_MAIN_VIEW -> {
+                Navigation.GO_MAIN_VIEW -> {
                     val intent = Intent(context, MainView::class.java)
                     context.startActivity(intent)
                     finish()
-                }
+                }else -> println()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -1,12 +1,12 @@
 package com.codejunior.inventoryapplication.model
 
-import com.codejunior.inventoryapplication.model.db.FirestoreImp
+import com.codejunior.inventoryapplication.model.db.FirebaseRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class LoginModel @Inject constructor(private val firebaseAuth: FirestoreImp) {
+class LoginModel @Inject constructor(private val firebaseAuth: FirebaseRepository) {
     suspend fun initSession(email: String, pass: String): Boolean {
 
         val user = UserFirebase().also {

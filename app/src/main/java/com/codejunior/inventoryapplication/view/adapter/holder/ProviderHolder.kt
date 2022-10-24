@@ -9,7 +9,7 @@ class ProviderHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemProviderBinding.bind(view)
 
-    fun render(provider:Provider){
+    fun render(provider: Provider) {
         binding.tvNameProviders.text = provider.nameProvider
         binding.tvEmailProvider.text = provider.emailProvider
         binding.tvTelefonoProvider.text = provider.phoneProvider

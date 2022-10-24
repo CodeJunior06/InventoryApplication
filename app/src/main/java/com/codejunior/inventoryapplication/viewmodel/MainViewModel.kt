@@ -1,7 +1,6 @@
 package com.codejunior.inventoryapplication.viewmodel
 
 import com.codejunior.inventoryapplication.model.MainModel
-import com.codejunior.inventoryapplication.model.db.FirestoreImp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -10,7 +9,8 @@ class MainViewModel  @Inject constructor( private val model:MainModel) : BaseVie
 
     fun logout() {
         model.signOut {
-            navigation.value = NAVIGATION.GO_LOGIN_VIEW
+            success.value = Success.SuccessLogOut.message
+            navigation.value = Navigation.GO_LOGIN_VIEW
         }
     }
 }

@@ -5,44 +5,49 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProveedoresBinding
 import com.codejunior.inventoryapplication.view.fragments.FragmentAddProviders
 import com.codejunior.inventoryapplication.view.fragments.FragmentListProviders
-import com.codejunior.inventoryapplication.viewmodel.ProveedoresViewModel
+import com.codejunior.inventoryapplication.viewmodel.ProviderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProviderView : AppCompatActivity() {
-    private lateinit var navController: NavController
-    private lateinit var binding: ActivityProveedoresBinding
 
-    private val providersViewModel: ProveedoresViewModel by viewModels()
+    private var _binding: ActivityProveedoresBinding? = null
+    private val binding get() = _binding
+    private var onPressed = 1;
 
-    private val context = this
+    private val providersViewModel: ProviderViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProveedoresBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.lifecycleOwner = this
-        binding.viewModelProveedores = providersViewModel
 
-        binding.addProviders.setOnClickListener {
-            replaceFragment(FragmentAddProviders())
-            binding.listProviders.typeface = Typeface.DEFAULT
-            binding.addProviders.typeface = Typeface.DEFAULT_BOLD
+        _binding = ActivityProveedoresBinding.inflate(layoutInflater)
+        setContentView(binding!!.root)
+
+        binding!!.lifecycleOwner = this
+        binding!!.viewModelProveedores = providersViewModel
+
+        binding!!.addProviders.setOnClickListener {
+
+            if (onPressed == 2) {
+                replaceFragment(FragmentAddProviders())
+                binding!!.listProviders.typeface = Typeface.DEFAULT
+                binding!!.addProviders.typeface = Typeface.DEFAULT_BOLD
+            }
+            onPressed = 1
         }
 
-        binding.listProviders.setOnClickListener {
-            replaceFragment(FragmentListProviders())
-            binding.addProviders.typeface = Typeface.DEFAULT
-            binding.listProviders.typeface = Typeface.DEFAULT_BOLD
+        binding!!.listProviders.setOnClickListener {
 
+            if (onPressed == 1) {
+                replaceFragment(FragmentListProviders())
+                binding!!.addProviders.typeface = Typeface.DEFAULT
+                binding!!.listProviders.typeface = Typeface.DEFAULT_BOLD
+            }
+            onPressed = 2
         }
 
 
@@ -58,5 +63,10 @@ class ProviderView : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         ManageSystemUI.hideSystemUI(window)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

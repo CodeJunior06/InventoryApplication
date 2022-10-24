@@ -1,12 +1,11 @@
-package com.codejunior.inventoryapplication.adapter
+package com.codejunior.inventoryapplication.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codejunior.inventoryapplication.databinding.ItemButtonBinding
+import com.codejunior.inventoryapplication.view.adapter.model.ButtonData
 
-data class ButtonData(val label: String, val img: Int, val onClick: (View) -> Unit)
 
 class ButtonAdapter(
     private val listButtons: List<ButtonData>,

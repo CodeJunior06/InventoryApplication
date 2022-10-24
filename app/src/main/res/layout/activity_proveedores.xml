@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModelProveedores"
-            type="com.codejunior.inventoryapplication.viewmodel.ProveedoresViewModel" />
+            type="com.codejunior.inventoryapplication.viewmodel.ProviderViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
