@@ -1,6 +1,6 @@
 package com.codejunior.inventoryapplication.model
 
-import com.codejunior.inventoryapplication.model.db.FirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject

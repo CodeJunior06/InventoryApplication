@@ -35,7 +35,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv_provider"
+            android:id="@+id/tv_provider_document"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -45,16 +45,20 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_name" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_provider"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/edt_provider_document"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/tv_name_providers"
-            app:layout_constraintTop_toBottomOf="@+id/tv_provider">
+            app:layout_constraintTop_toBottomOf="@+id/tv_provider_document">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
+                android:id="@+id/dropdown"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
+                android:inputType="none"
+                android:hint="Seleccione un tipo"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -67,7 +71,7 @@
             android:text="@string/document_number"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/tv_name_providers"
-            app:layout_constraintTop_toBottomOf="@+id/edt_provider" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_provider_document" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edt_nit_provider"

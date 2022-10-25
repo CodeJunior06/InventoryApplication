@@ -1,8 +1,8 @@
-package com.codejunior.inventoryapplication.model.db
+package com.codejunior.inventoryapplication.model.db.network
 
-import com.codejunior.inventoryapplication.model.db.model.Product
+import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
-import com.codejunior.inventoryapplication.model.db.model.Provider
+import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
@@ -19,6 +19,8 @@ interface IFirebaseRepository {
     suspend fun insertProvider(provider: Provider): Task<Void>
 
     suspend fun getAllProviderFB(): Task<QuerySnapshot>
+
+    suspend fun getAllUser(): Task<QuerySnapshot>
 
     //NO SUSPEND
     fun getSession(): FirebaseUser?

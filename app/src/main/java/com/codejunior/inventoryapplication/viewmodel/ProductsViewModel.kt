@@ -1,6 +1,5 @@
 package com.codejunior.inventoryapplication.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.codejunior.inventoryapplication.model.ProductModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,13 +9,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductsViewModel @Inject constructor(private val productModel: ProductModel) :
     BaseViewModel() {
-    val nameProduct = MutableLiveData("")
-    val proveedor = MutableLiveData("")
-    val disponibilidad: MutableLiveData<String> = MutableLiveData<String>("")
-    val stock = MutableLiveData("")
-    val categoria = MutableLiveData("")
-    val cost = MutableLiveData("")
-    private lateinit var lst: List<String>
 
     fun validProduct(lst: List<String>) {
         if (validEmptyString(lst)) {

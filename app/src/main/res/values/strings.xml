@@ -29,4 +29,10 @@
     <string name="telphone_number">Teléfono</string>
     <string name="e_mail">E-mail</string>
     <string name="address">Dirección</string>
+
+    <string-array name="type_document">
+        <item>Cedula De Ciudania</item>
+        <item>Extranjero(a)</item>
+        <item>Pasaporte</item>
+    </string-array>
 </resources>

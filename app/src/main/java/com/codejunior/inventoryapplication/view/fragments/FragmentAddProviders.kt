@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.FragmentAddProvidersBinding
 import com.codejunior.inventoryapplication.utils.extension.intentMainFromFragment
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
@@ -33,9 +35,9 @@ class FragmentAddProviders : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item,requireView().resources.getStringArray(R.array.type_document))
         binding!!.button.setOnClickListener { connectToViewModel() }
-
+        binding!!.dropdown.setAdapter(arrayAdapter)
         viewModelAddProviders.navigation.observe(viewLifecycleOwner) {
             when (it) {
                 Navigation.GO_MAIN_VIEW -> startActivity(intentMainFromFragment())
@@ -54,7 +56,7 @@ class FragmentAddProviders : Fragment() {
     private fun connectToViewModel() {
         val lst = mutableListOf(
             binding!!.edtName.editText?.text.toString(),
-            binding!!.edtProvider.editText?.text.toString(),
+            binding!!.edtProviderDocument.editText?.text.toString(),
             binding!!.edtNitProvider.editText?.text.toString(),
             binding!!.edtTelefonoProvider.editText?.text.toString(),
             binding!!.edtEmailProvider.editText?.text.toString(),

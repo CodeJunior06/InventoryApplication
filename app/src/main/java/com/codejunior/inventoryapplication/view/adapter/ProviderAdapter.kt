@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codejunior.inventoryapplication.R
-import com.codejunior.inventoryapplication.model.db.model.Provider
+import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.codejunior.inventoryapplication.view.adapter.holder.ProviderHolder
 
 class ProviderAdapter(

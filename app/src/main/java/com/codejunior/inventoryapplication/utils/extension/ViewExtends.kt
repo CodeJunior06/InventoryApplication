@@ -4,10 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.codejunior.inventoryapplication.view.LoginView
-import com.codejunior.inventoryapplication.view.MainView
-import com.codejunior.inventoryapplication.view.ProductsView
-import com.codejunior.inventoryapplication.view.ProviderView
+import com.codejunior.inventoryapplication.view.*
 
 fun Activity.toastMessage(message: String) {
     val toast = Toast.makeText(this, message, Toast.LENGTH_LONG)
@@ -37,4 +34,8 @@ fun Activity.intentProviderFromActivity(): Intent {
 
 fun Activity.intentProductFromActivity(): Intent {
     return Intent(this, ProductsView::class.java)
+}
+
+fun Activity.intentCategoryFromActivity(): Intent {
+    return Intent(this, CategoryView::class.java)
 }

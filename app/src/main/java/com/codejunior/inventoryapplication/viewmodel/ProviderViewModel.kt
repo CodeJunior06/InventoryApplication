@@ -6,7 +6,7 @@ import com.codejunior.inventoryapplication.model.ProviderModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.codejunior.inventoryapplication.model.db.model.Provider
+import com.codejunior.inventoryapplication.model.db.network.model.Provider
 
 @HiltViewModel
 class ProviderViewModel @Inject constructor(private val modelProvider: ProviderModel) :

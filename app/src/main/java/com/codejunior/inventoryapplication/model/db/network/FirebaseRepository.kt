@@ -1,8 +1,9 @@
-package com.codejunior.inventoryapplication.model.db
+package com.codejunior.inventoryapplication.model.db.network
 
-import com.codejunior.inventoryapplication.model.db.model.Product
+import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
-import com.codejunior.inventoryapplication.model.db.model.Provider
+import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
+import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -19,10 +20,10 @@ import javax.inject.Singleton
 class FirebaseRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firebaseFirestore: FirebaseFirestore
-) :
-    IFirebaseRepository {
+) : IFirebaseRepository {
 
-    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
     override suspend fun isSetAuthentication(userFirebase: UserFirebase): Task<AuthResult> {
         return withContext(dispatcher) {
             firebaseAuth.signInWithEmailAndPassword(
@@ -33,6 +34,7 @@ class FirebaseRepository @Inject constructor(
     }
 
     override fun getSession(): FirebaseUser? = firebaseAuth.currentUser
+
     override fun signOut(success: () -> Unit) {
         firebaseAuth.signOut()
         success.invoke()
@@ -40,19 +42,25 @@ class FirebaseRepository @Inject constructor(
 
     override suspend fun insertProduct(product: Product): Task<Void> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection("product").document().set(product)
+            firebaseFirestore.collection(NameFirebase.TABLE_PRODUCT).document().set(product)
         }
     }
 
     override suspend fun insertProvider(provider: Provider): Task<Void> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection("provider").document().set(provider)
+            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER).document().set(provider)
         }
     }
 
     override suspend fun getAllProviderFB(): Task<QuerySnapshot> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection("provider").get()
+            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER).get()
+        }
+    }
+
+    override suspend fun getAllUser(): Task<QuerySnapshot> {
+        return  withContext(dispatcher){
+            firebaseFirestore.collection(NameFirebase.TABLE_USER).get()
         }
     }
 

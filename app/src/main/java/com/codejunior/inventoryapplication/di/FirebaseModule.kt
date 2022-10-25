@@ -1,8 +1,8 @@
 package com.codejunior.inventoryapplication.di
 
 
-import com.codejunior.inventoryapplication.model.db.IFirebaseRepository
-import com.codejunior.inventoryapplication.model.db.FirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.IFirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

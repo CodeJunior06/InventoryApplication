@@ -1,7 +1,7 @@
 package com.codejunior.inventoryapplication.model
 
-import com.codejunior.inventoryapplication.model.db.model.Product
-import com.codejunior.inventoryapplication.model.db.FirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.model.Product
+import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -9,7 +9,15 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
 
     suspend fun insertProductDB(lst: List<String>): Boolean {
         val productsIngress =
-            Product(lst[0], lst[1], lst[2].toInt(), lst[3].toInt(), lst[4], lst[5].toInt())
+            Product(
+                productName = lst[0],
+                productProvider = lst[1],
+                productAvailability = lst[2].toInt(),
+                productStock = lst[3].toInt(),
+                productCategory = lst[4],
+                productCost = lst[5].toInt(),
+                productUserID = firebaseRepository.getSession()!!.uid
+            )
         firebaseRepository.insertProduct(productsIngress).await()
         return true
     }
