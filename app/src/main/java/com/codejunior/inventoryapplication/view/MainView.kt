@@ -14,6 +14,9 @@ import com.codejunior.inventoryapplication.viewmodel.Error
 import com.codejunior.inventoryapplication.viewmodel.MainViewModel
 import com.codejunior.inventoryapplication.viewmodel.Navigation
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainView : AppCompatActivity() {
@@ -47,7 +50,11 @@ class MainView : AppCompatActivity() {
                     finish()
                 }
                 Navigation.GO_PROVIDERS_VIEW -> {
+                    CoroutineScope(Dispatchers.IO).launch{
+                        isNewUSerApplication()
+                    }
                     context.startActivity(intentProviderFromActivity())
+                    finish()
                 }
                 Navigation.GO_PRODUCTS_VIEW -> {
                     if (!isNewUSerApplication()) {

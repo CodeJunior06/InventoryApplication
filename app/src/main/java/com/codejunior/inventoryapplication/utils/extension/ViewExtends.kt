@@ -39,3 +39,7 @@ fun Activity.intentProductFromActivity(): Intent {
 fun Activity.intentCategoryFromActivity(): Intent {
     return Intent(this, CategoryView::class.java)
 }
+
+fun Fragment.intentCategoryFromFragment(): Intent {
+    return Intent(requireActivity(), CategoryView::class.java)
+}

@@ -2,6 +2,7 @@ package com.codejunior.inventoryapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.ProviderModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,6 +22,10 @@ class ProviderViewModel @Inject constructor(private val modelProvider: ProviderM
             viewModelScope.launch {
                 modelProvider.insertProvider(lstData)
                 success.value = Success.SuccessInsertProvider.message
+                if(userApplication.isNew){
+                    navigation.value = Navigation.GO_CATEGORY_VIEW
+                    return@launch
+                }
                 navigation.value = Navigation.GO_MAIN_VIEW
             }
         } else {

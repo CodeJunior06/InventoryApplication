@@ -2,6 +2,7 @@ package com.codejunior.inventoryapplication.model.db.network
 
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
+import com.codejunior.inventoryapplication.model.db.network.model.Category
 import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -20,7 +21,11 @@ interface IFirebaseRepository {
 
     suspend fun getAllProviderFB(): Task<QuerySnapshot>
 
-    suspend fun getAllUser(): Task<QuerySnapshot>
+    suspend fun getAllUserTable(): Task<QuerySnapshot>
+
+    suspend fun insertCategory(category: Category): Task<Void>
+
+    suspend fun updateUserTable() :Task<Void>
 
     //NO SUSPEND
     fun getSession(): FirebaseUser?

@@ -3,6 +3,7 @@ package com.codejunior.inventoryapplication.model.db.network
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
+import com.codejunior.inventoryapplication.model.db.network.model.Category
 import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -54,14 +55,26 @@ class FirebaseRepository @Inject constructor(
 
     override suspend fun getAllProviderFB(): Task<QuerySnapshot> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER).get()
+            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER).whereEqualTo(NameFirebase.FIELD_PROVIDER_USER_ID,getSession()!!.uid).get()
         }
     }
 
-    override suspend fun getAllUser(): Task<QuerySnapshot> {
+    override suspend fun getAllUserTable(): Task<QuerySnapshot> {
         return  withContext(dispatcher){
             firebaseFirestore.collection(NameFirebase.TABLE_USER).get()
         }
+    }
+
+    override suspend fun insertCategory(category: Category): Task<Void> {
+        return withContext(dispatcher){
+            firebaseFirestore.collection(NameFirebase.TABLE_CATEGORY).document().set(category)
+        }
+    }
+
+    override suspend fun updateUserTable(): Task<Void> {
+       return withContext(dispatcher){
+           firebaseFirestore.collection(NameFirebase.TABLE_USER).document(getSession()!!.uid).update("isNew",false)
+       }
     }
 
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.FragmentAddProvidersBinding
+import com.codejunior.inventoryapplication.utils.extension.intentCategoryFromFragment
 import com.codejunior.inventoryapplication.utils.extension.intentMainFromFragment
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.Navigation
@@ -40,7 +41,14 @@ class FragmentAddProviders : Fragment() {
         binding!!.dropdown.setAdapter(arrayAdapter)
         viewModelAddProviders.navigation.observe(viewLifecycleOwner) {
             when (it) {
-                Navigation.GO_MAIN_VIEW -> startActivity(intentMainFromFragment())
+                Navigation.GO_MAIN_VIEW -> {
+                    startActivity(intentMainFromFragment())
+                    requireActivity().finish()
+                }
+                Navigation.GO_CATEGORY_VIEW ->{
+                    startActivity(intentCategoryFromFragment())
+                    requireActivity().finish()
+                }
                 else -> println()
             }
         }

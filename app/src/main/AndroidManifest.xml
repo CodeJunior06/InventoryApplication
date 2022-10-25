@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InventoryApplication">
         <activity
+            android:name=".view.CategoryView"
+            android:exported="true" />
+        <activity
             android:name=".view.LoginView"
             android:exported="false" />
         <activity

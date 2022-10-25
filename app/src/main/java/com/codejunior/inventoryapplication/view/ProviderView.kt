@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProveedoresBinding
+import com.codejunior.inventoryapplication.utils.extension.intentMainFromActivity
 import com.codejunior.inventoryapplication.view.fragments.FragmentAddProviders
 import com.codejunior.inventoryapplication.view.fragments.FragmentListProviders
 import com.codejunior.inventoryapplication.viewmodel.ProviderViewModel
@@ -68,5 +69,11 @@ class ProviderView : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(intentMainFromActivity())
+        finish()
     }
 }

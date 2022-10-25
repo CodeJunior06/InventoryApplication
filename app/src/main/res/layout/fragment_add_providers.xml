@@ -34,32 +34,23 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_provider_document"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/doc_type"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/tv_name_providers"
-            app:layout_constraintTop_toBottomOf="@+id/edt_name" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edt_provider_document"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/tv_name_providers"
-            app:layout_constraintTop_toBottomOf="@+id/tv_provider_document">
+            app:layout_constraintTop_toBottomOf="@+id/edt_name">
 
             <AutoCompleteTextView
                 android:id="@+id/dropdown"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:inputType="none"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:hint="Seleccione un tipo"
-                android:layout_height="wrap_content" />
+                android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,8 +83,8 @@
             android:id="@+id/tv_telefono_provider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/telphone_number"
             android:layout_marginTop="15dp"
+            android:text="@string/telphone_number"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/edt_nit_provider" />
@@ -142,8 +133,8 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/address"
             android:layout_marginTop="15dp"
+            android:text="@string/address"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/edt_email_provider" />
@@ -165,13 +156,14 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_button"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline5" />
+            app:layout_constraintEnd_toEndOf="@+id/edt_address"
+            app:layout_constraintStart_toStartOf="@+id/edt_address"
+            app:layout_constraintTop_toBottomOf="@+id/edt_address" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

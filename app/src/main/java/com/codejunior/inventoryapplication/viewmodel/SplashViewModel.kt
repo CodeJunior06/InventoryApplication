@@ -1,6 +1,7 @@
 package com.codejunior.inventoryapplication.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
