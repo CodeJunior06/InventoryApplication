@@ -1,330 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModelProducts"
-            type="com.codejunior.inventoryapplication.viewmodel.ProductsViewModel" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ShapeAppearance.Material3.LargeComponent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".view.ProductsView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/ShapeAppearance.Material3.LargeComponent"
+        android:id="@+id/constraintLayout"
+        style="@style/rectangle_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
-        tools:context=".view.ProductsView">
+        android:layout_marginTop="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            style="@style/rectangle_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="35dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
+            android:id="@+id/const_tittle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="@+id/guideline3">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/const_tittle"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toTopOf="@+id/guideline3">
-
-                <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/product_icon" />
-
-                <TextView
-                    android:id="@+id/label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/products"
-                    android:textColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icon"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/product_icon" />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/label"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Name"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toTopOf="@+id/guideline13" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_provider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/provider"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/edt_name" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_provider"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_provider">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_disponibilidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/availability"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/edt_provider" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_disponibilidad"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline16"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/tv_disponibilidad">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_stock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/stock"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/edt_provider" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_stock"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/tv_stock">
+                android:text="@string/products"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icon"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Name"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toTopOf="@+id/guideline13" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_provider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/provider"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_provider"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_provider">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Seleccione el proveedor"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/edt_provider"
+            app:layout_constraintStart_toStartOf="@+id/edt_provider"
+            app:layout_constraintTop_toBottomOf="@+id/edt_provider">
 
             <TextView
                 android:id="@+id/tv_categories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/categories"
-                android:layout_marginTop="15dp"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/edt_disponibilidad" />
+                tools:layout_editor_absoluteX="43dp"
+                tools:layout_editor_absoluteY="523dp" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_categories"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/tv_categories">
+                app:layout_constraintStart_toStartOf="@+id/tv_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_provider">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
+                    android:id="@+id/dropdownCategory"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Seleccione la categoria"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_presentation_of_the_product"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/costo_producto"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/edt_categories" />
+        <TextView
+            android:id="@+id/tv_disponibilidad"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/availability"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/linear_category" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_coste"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/tv_presentation_of_the_product">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_disponibilidad"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_disponibilidad">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_imge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/image"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/guideline12"
-                app:layout_constraintStart_toStartOf="@+id/guideline5"
-                app:layout_constraintTop_toBottomOf="@+id/edt_presentation_of_the_product" />
+        <TextView
+            android:id="@+id/tv_stock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/stock"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/linear_category" />
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline12"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline16"
-                app:layout_constraintTop_toBottomOf="@+id/edt_presentation_of_the_product"
-                android:background="@color/black"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_stock"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/tv_stock">
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/shape_button"
-                android:text="@string/save"
-                app:layout_constraintBottom_toTopOf="@+id/guideline8"
-                app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toTopOf="@+id/guideline9" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.1" />
+        <TextView
+            android:id="@+id/tv_presentation_of_the_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/costo_producto"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/edt_stock" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.9" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_coste"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_presentation_of_the_product">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.2" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.05" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.15" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_button"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edt_coste"
+            app:layout_constraintStart_toStartOf="@+id/edt_coste"
+            app:layout_constraintTop_toBottomOf="@+id/edt_coste" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.34" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.67" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="1.0" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.9" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.95" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.34" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.67" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="1.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

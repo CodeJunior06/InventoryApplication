@@ -21,7 +21,7 @@ interface IFirebaseRepository {
 
     suspend fun getAllProviderFB(): Task<QuerySnapshot>
 
-    suspend fun getAllUserTable(): Task<QuerySnapshot>
+    suspend fun getAllUserTable(id:String): Task<QuerySnapshot>
 
     suspend fun insertCategory(category: Category): Task<Void>
 

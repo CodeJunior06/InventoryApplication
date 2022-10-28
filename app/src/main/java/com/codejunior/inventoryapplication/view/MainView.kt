@@ -59,12 +59,14 @@ class MainView : AppCompatActivity() {
                 Navigation.GO_PRODUCTS_VIEW -> {
                     if (!isNewUSerApplication()) {
                         context.startActivity(intentProductFromActivity())
+                        return@observe
                     }
                     mainViewModel.error.value = Error.ErrorNewUser.message
                 }
                 Navigation.GO_CATEGORY_VIEW -> {
                     if (!isNewUSerApplication()) {
                         context.startActivity(intentCategoryFromActivity())
+                        return@observe
                     }
                     mainViewModel.error.value = Error.ErrorNewUser.message
                 }

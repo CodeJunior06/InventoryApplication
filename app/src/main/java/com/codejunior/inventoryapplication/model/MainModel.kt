@@ -14,13 +14,13 @@ class MainModel @Inject constructor(private val firebaseRepository: FirebaseRepo
 
     suspend fun getUser(): Boolean {
         val userSession = firebaseRepository.getSession()!!.uid
-        val response = firebaseRepository.getAllUserTable().await()
+        val response = firebaseRepository.getAllUserTable(userSession).await().first()
 
-        for (user in response) {
-
-            if (userSession == user.getString("id") && user.getBoolean("isNew") == true) {
+        if (response.exists()) {
+            userApplication.id = response.getString("id")!!
+            userApplication.isNew = false
+            if (response.getBoolean("isNew") == true) {
                 userApplication.isNew = true
-                userApplication.id = user.id
                 return true
             }
         }

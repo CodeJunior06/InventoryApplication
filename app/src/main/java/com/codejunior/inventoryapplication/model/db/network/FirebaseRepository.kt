@@ -59,9 +59,9 @@ class FirebaseRepository @Inject constructor(
         }
     }
 
-    override suspend fun getAllUserTable(): Task<QuerySnapshot> {
+    override suspend fun getAllUserTable(id: String): Task<QuerySnapshot> {
         return  withContext(dispatcher){
-            firebaseFirestore.collection(NameFirebase.TABLE_USER).get()
+            firebaseFirestore.collection(NameFirebase.TABLE_USER).whereEqualTo("id",id).get()
         }
     }
 
