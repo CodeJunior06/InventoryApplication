@@ -55,26 +55,36 @@ class FirebaseRepository @Inject constructor(
 
     override suspend fun getAllProviderFB(): Task<QuerySnapshot> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER).whereEqualTo(NameFirebase.FIELD_PROVIDER_USER_ID,getSession()!!.uid).get()
+            firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER)
+                .whereEqualTo(NameFirebase.FIELD_PROVIDER_USER_ID, getSession()!!.uid).get()
         }
     }
 
     override suspend fun getAllUserTable(id: String): Task<QuerySnapshot> {
-        return  withContext(dispatcher){
-            firebaseFirestore.collection(NameFirebase.TABLE_USER).whereEqualTo("id",id).get()
+        return withContext(dispatcher) {
+            firebaseFirestore.collection(NameFirebase.TABLE_USER).whereEqualTo("id", id).get()
         }
     }
 
     override suspend fun insertCategory(category: Category): Task<Void> {
-        return withContext(dispatcher){
+        return withContext(dispatcher) {
             firebaseFirestore.collection(NameFirebase.TABLE_CATEGORY).document().set(category)
         }
     }
 
     override suspend fun updateUserTable(): Task<Void> {
-       return withContext(dispatcher){
-           firebaseFirestore.collection(NameFirebase.TABLE_USER).document(getSession()!!.uid).update("isNew",false)
-       }
+        return withContext(dispatcher) {
+            firebaseFirestore.collection(NameFirebase.TABLE_USER).document(getSession()!!.uid)
+                .update("isNew", false)
+        }
+    }
+
+    override suspend fun getCategoryByProvider(item: String): Task<QuerySnapshot> {
+        return withContext(dispatcher) {
+            firebaseFirestore.collection(NameFirebase.TABLE_CATEGORY)
+                .whereEqualTo(NameFirebase.FIELD_CATEGORY_PROVIDER_ID, item)
+                .whereEqualTo(NameFirebase.FIELD_CATEGORY_USER_ID, getSession()!!.uid).get()
+        }
     }
 
 }

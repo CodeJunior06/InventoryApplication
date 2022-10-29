@@ -2,15 +2,22 @@ package com.codejunior.inventoryapplication.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProductsBinding
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ProductsView : AppCompatActivity() {
+class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private var _binding: ActivityProductsBinding? = null
     private val binding get() = _binding
@@ -22,9 +29,26 @@ class ProductsView : AppCompatActivity() {
         _binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        binding!!.lifecycleOwner = this
-        binding!!.viewModelProducts = productsViewModel
+        CoroutineScope(Dispatchers.Main).launch {
+            productsViewModel.getDataProvider()
+        }
+        productsViewModel.arrayProviderName.observe(this) {
+            val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item, it)
+            binding!!.dropdown.setAdapter(arrayAdapter)
+            binding!!.dropdown.onItemClickListener = this@ProductsView
+            productsViewModel.onLoading.postValue(false)
+        }
 
+        productsViewModel.onLoading.observe(this) {
+            if (it) {
+                binding!!.constraintLayoutLoading.visibility = View.VISIBLE
+                binding!!.constraintLayoutField.visibility = View.GONE
+
+            } else {
+                binding!!.constraintLayoutLoading.visibility = View.GONE
+                binding!!.constraintLayoutField.visibility = View.VISIBLE
+            }
+        }
 
         binding!!.button.setOnClickListener {
             val lst = mutableListOf(
@@ -54,6 +78,31 @@ class ProductsView : AppCompatActivity() {
         productsViewModel.success.observe(this) {
             toastMessage(it)
         }
+
+        productsViewModel.onLoadingCategory.observe(this){
+            if(it){
+                binding!!.linearCategory.visibility = View.GONE
+            }else{
+                binding!!.linearCategory.visibility = View.VISIBLE
+            }
+        }
+
+        productsViewModel.arrayCategoryName.observe(this){
+            val arrayAdapterCategory = ArrayAdapter(this, R.layout.dropdown_item, it)
+            binding!!.dropdownCategory.setAdapter(arrayAdapterCategory)
+            productsViewModel.onLoadingOrTextView.value =true
+        }
+
+        productsViewModel.onLoadingOrTextView.observe(this){
+            if(it){
+                binding!!.lottieLoading.visibility = View.GONE
+                binding!!.edtCategories.visibility = View.VISIBLE
+                binding!!.lottieLoading.repeatMode
+            }else{
+                binding!!.lottieLoading.visibility = View.VISIBLE
+                binding!!.edtCategories.visibility = View.GONE
+            }
+        }
     }
 
     override fun onStart() {
@@ -65,4 +114,15 @@ class ProductsView : AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val item = parent?.getItemAtPosition(position).toString()
+        CoroutineScope(Dispatchers.Main).launch {
+            productsViewModel.getCategoryByProvider(item)
+        }
+
+        productsViewModel.onLoadingOrTextView.postValue(false)
+        productsViewModel.onLoadingCategory.postValue(false)
+    }
+
 }

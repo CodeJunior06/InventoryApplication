@@ -27,6 +27,8 @@ interface IFirebaseRepository {
 
     suspend fun updateUserTable() :Task<Void>
 
+    suspend fun getCategoryByProvider(item:String) : Task<QuerySnapshot>
+
     //NO SUSPEND
     fun getSession(): FirebaseUser?
 
