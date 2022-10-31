@@ -38,6 +38,10 @@ class LoginViewModel @Inject constructor(private val loginModel: LoginModel) :
         }
     }
 
+    fun goToRegisterUSer(){
+        navigation.value = Navigation.GO_REGISTER_VIEW
+    }
+
     private fun validFieldNotEmpty(email: String, pass: String): Boolean {
         val lstTemporal = mutableListOf(email, pass)
 

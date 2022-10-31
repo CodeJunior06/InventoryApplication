@@ -43,3 +43,7 @@ fun Activity.intentCategoryFromActivity(): Intent {
 fun Fragment.intentCategoryFromFragment(): Intent {
     return Intent(requireActivity(), CategoryView::class.java)
 }
+
+fun Activity.intentRegisterFromActivity(): Intent {
+    return Intent(this, RegisterView::class.java)
+}

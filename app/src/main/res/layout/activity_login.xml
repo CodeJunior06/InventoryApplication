@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -32,8 +32,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="290dp"
                 android:layout_height="200dp"
-                android:src="@drawable/logo"
                 android:layout_marginBottom="15dp"
+                android:src="@drawable/logo"
                 app:layout_constraintBottom_toTopOf="@+id/txt_welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -42,10 +42,10 @@
                 android:id="@+id/txt_welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="@string/welcome"
                 android:textColor="#000000"
                 android:textSize="21sp"
-                android:layout_marginBottom="10dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/txt_sistema_gestion"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
                 android:textColor="#6B5E5E"
                 app:layout_constraintBottom_toTopOf="@+id/guideline17"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_mail"
@@ -100,19 +100,46 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/bill_back"
+            <LinearLayout
+                android:layout_margin="5dp"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:background="@drawable/shape_button"
-                android:onClick="@{()-> viewModelLogin.initAuthentication()}"
-                android:text="@string/iniciar_sesion"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toTopOf="@+id/guideline8"
-                app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toTopOf="@+id/guideline9" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_pass"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_pass"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_pass">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register_login"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="@{()-> viewModelLogin.goToRegisterUSer()}"
+                    android:text="@string/register"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bill_back"
+                    app:layout_constraintStart_toStartOf="@+id/txt_input_pass"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input_pass" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:paddingVertical="15dp"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    app:cornerRadius="12dp"
+                    android:id="@+id/bill_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#DD689DC3"
+                    android:layout_weight="4"
+                    android:elevation="3dp"
+                    android:onClick="@{()-> viewModelLogin.initAuthentication()}"
+                    android:text="@string/iniciar_sesion"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input_pass" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline6"

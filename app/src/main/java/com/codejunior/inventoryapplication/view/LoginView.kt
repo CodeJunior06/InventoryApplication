@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivityLoginBinding
+import com.codejunior.inventoryapplication.utils.extension.intentRegisterFromActivity
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.*
 
@@ -43,7 +44,9 @@ class LoginView : AppCompatActivity() {
                     val intent = Intent(context, MainView::class.java)
                     context.startActivity(intent)
                     finish()
-                }else -> println()
+                }
+                Navigation.GO_REGISTER_VIEW -> startActivity(intentRegisterFromActivity())
+                else -> println()
             }
         }
     }
