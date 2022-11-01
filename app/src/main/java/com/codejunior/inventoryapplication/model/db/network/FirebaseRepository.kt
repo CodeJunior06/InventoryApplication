@@ -1,10 +1,12 @@
 package com.codejunior.inventoryapplication.model.db.network
 
+import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
 import com.codejunior.inventoryapplication.model.db.network.model.Category
 import com.codejunior.inventoryapplication.model.db.network.model.Provider
+import com.codejunior.inventoryapplication.model.db.network.model.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -37,10 +39,7 @@ class FirebaseRepository @Inject constructor(
 
     override fun getSession(): FirebaseUser? = firebaseAuth.currentUser
 
-    override fun signOut(success: () -> Unit) {
-        firebaseAuth.signOut()
-        success.invoke()
-    }
+    override fun signOut() = firebaseAuth.signOut()
 
     override suspend fun insertProduct(product: Product): Task<Void> {
         return withContext(dispatcher) {
@@ -63,7 +62,8 @@ class FirebaseRepository @Inject constructor(
 
     override suspend fun getAllUserTable(id: String): Task<QuerySnapshot> {
         return withContext(dispatcher) {
-            firebaseFirestore.collection(NameFirebase.TABLE_USER).whereEqualTo("id", id).get()
+            firebaseFirestore.collection(NameFirebase.TABLE_USER)
+                .whereEqualTo(NameFirebase.FIELD_USER_ID, id).get()
         }
     }
 
@@ -88,10 +88,19 @@ class FirebaseRepository @Inject constructor(
         }
     }
 
-    override suspend fun registerUser(email:String, pass:String): AuthResult {
-        return withContext(dispatcher){
-            firebaseAuth.createUserWithEmailAndPassword(email.trim(),pass.trim()).await()
+    override suspend fun registerUser(email: String, pass: String): AuthResult {
+        return withContext(dispatcher) {
+            firebaseAuth.createUserWithEmailAndPassword(email.trim(), pass.trim()).await()
         }
+    }
+
+    override suspend fun registerUserTableFirestore() {
+        firebaseFirestore
+            .collection(NameFirebase.TABLE_USER).document(userApplication.id).set(
+                User(
+                    userApplication.id, userApplication.isNew
+                )
+            )
     }
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.view.adapter.ButtonAdapter
 import com.codejunior.inventoryapplication.databinding.ActivityMainBinding
@@ -14,9 +15,6 @@ import com.codejunior.inventoryapplication.viewmodel.Error
 import com.codejunior.inventoryapplication.viewmodel.MainViewModel
 import com.codejunior.inventoryapplication.viewmodel.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainView : AppCompatActivity() {
@@ -46,13 +44,10 @@ class MainView : AppCompatActivity() {
 
             when (navigation) {
                 Navigation.GO_LOGIN_VIEW -> {
-                    context.startActivity(intentActivityLogin())
+                    context.startActivity(intentLoginFromActivity())
                     finish()
                 }
                 Navigation.GO_PROVIDERS_VIEW -> {
-                    CoroutineScope(Dispatchers.IO).launch{
-                        isNewUSerApplication()
-                    }
                     context.startActivity(intentProviderFromActivity())
                     finish()
                 }
@@ -104,7 +99,7 @@ class MainView : AppCompatActivity() {
     }
 
     private fun isNewUSerApplication(): Boolean {
-        if (mainViewModel.isNewUSer()) {
+        if (userApplication.isNew) {
             println("ES NUEVO USUARIO")
             return true
         }

@@ -39,6 +39,9 @@ class NameFirebase {
         const val FIELD_PRODUCT_COST: String = "productCost"
         const val FIELD_PRODUCT_USER_ID: String = "productUserID"
 
+        const val FIELD_USER_ID:String = "id"
+        const val FIELD_USER_IS_NEW:String = "newUser"
+
     }
 
 

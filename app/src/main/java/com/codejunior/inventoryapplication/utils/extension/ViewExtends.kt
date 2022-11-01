@@ -20,7 +20,7 @@ fun Activity.intentMainFromActivity(): Intent {
     return Intent(this, MainView::class.java)
 }
 
-fun Activity.intentActivityLogin(): Intent {
+fun Activity.intentLoginFromActivity(): Intent {
     return Intent(this, LoginView::class.java)
 }
 

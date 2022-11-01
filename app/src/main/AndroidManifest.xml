@@ -10,12 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InventoryApplication">
+
         <activity
             android:name=".view.RegisterView"
-            android:exported="true" />
+            android:theme="@style/Theme.santiago"
+            android:exported="false" />
         <activity
             android:name=".view.CategoryView"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".view.LoginView"
             android:exported="false" />

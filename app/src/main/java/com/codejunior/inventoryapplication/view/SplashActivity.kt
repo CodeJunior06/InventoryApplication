@@ -8,7 +8,9 @@ import android.os.CountDownTimer
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.databinding.ActivitySplashBinding
+import com.codejunior.inventoryapplication.utils.extension.intentLoginFromActivity
 import com.codejunior.inventoryapplication.utils.extension.intentMainFromActivity
+import com.codejunior.inventoryapplication.viewmodel.Navigation
 import com.codejunior.inventoryapplication.viewmodel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,9 +29,23 @@ class SplashActivity : AppCompatActivity() {
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
         context = this;
-        bool = splashViewModel.getInitSession()
-        startTimer()
+        splashViewModel.getInitSession()
+        //startTimer()
 
+
+        splashViewModel.navigation.observe(this){
+            when(it){
+                Navigation.GO_MAIN_VIEW->{
+                    startActivity(intentMainFromActivity())
+                    finish()
+                }
+                Navigation.GO_LOGIN_VIEW->{
+                    startActivity(intentLoginFromActivity())
+                    finish()
+                }
+                else -> println()
+            }
+        }
     }
 
     private fun startTimer() {

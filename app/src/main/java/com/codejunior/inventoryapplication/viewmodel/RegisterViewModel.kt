@@ -2,6 +2,7 @@ package com.codejunior.inventoryapplication.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,7 +25,10 @@ class RegisterViewModel @Inject constructor(private val repository: FirebaseRepo
                 error.value = Error.ErrorRegisterUser.message
                 return@launch
             }
-            repository.signOut {  }
+            userApplication.id =response.user!!.uid
+            userApplication.isNew = true
+
+            repository.signOut()
             success.value = Success.SuccessRegister.message
 
         }
@@ -39,5 +43,9 @@ class RegisterViewModel @Inject constructor(private val repository: FirebaseRepo
             }
         }
         return true
+    }
+
+    suspend fun registerUser() {
+        repository.registerUserTableFirestore()
     }
 }

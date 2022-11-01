@@ -7,14 +7,17 @@ import com.codejunior.inventoryapplication.databinding.ActivityRegisterViewBindi
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
 import com.codejunior.inventoryapplication.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterView : AppCompatActivity() {
 
-    private var _binding:ActivityRegisterViewBinding? = null
-    private val binding get() =_binding
+    private var _binding: ActivityRegisterViewBinding? = null
+    private val binding get() = _binding
 
-    private  val registerViewModel:RegisterViewModel by viewModels()
+    private val registerViewModel: RegisterViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityRegisterViewBinding.inflate(layoutInflater)
@@ -23,11 +26,14 @@ class RegisterView : AppCompatActivity() {
         binding!!.lifecycleOwner = this
         binding!!.registerViewModel = registerViewModel
 
-        registerViewModel.error.observe(this){
+        registerViewModel.error.observe(this) {
             toastMessage(it)
         }
-        registerViewModel.success.observe(this){
+        registerViewModel.success.observe(this) {
             toastMessage(it)
+            CoroutineScope(Dispatchers.Unconfined).launch{
+                registerViewModel.registerUser()
+            }
             finish()
             this.onBackPressed()
         }

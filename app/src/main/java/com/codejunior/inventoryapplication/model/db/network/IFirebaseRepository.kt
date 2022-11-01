@@ -31,9 +31,11 @@ interface IFirebaseRepository {
 
     suspend fun registerUser(email:String,pass:String) : AuthResult
 
+    suspend fun registerUserTableFirestore()
+
     //NO SUSPEND
     fun getSession(): FirebaseUser?
 
-    fun signOut(success: () -> Unit)
+    fun signOut()
 
 }

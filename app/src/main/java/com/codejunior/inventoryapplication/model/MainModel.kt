@@ -2,13 +2,14 @@ package com.codejunior.inventoryapplication.model
 
 import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class MainModel @Inject constructor(private val firebaseRepository: FirebaseRepository) {
 
-    fun signOut(success: () -> Unit) {
-        firebaseRepository.signOut(success)
+    fun signOut() {
+        firebaseRepository.signOut()
     }
 
 
@@ -19,7 +20,7 @@ class MainModel @Inject constructor(private val firebaseRepository: FirebaseRepo
         if (response.exists()) {
             userApplication.id = response.getString("id")!!
             userApplication.isNew = false
-            if (response.getBoolean("isNew") == true) {
+            if (response.getBoolean(NameFirebase.FIELD_USER_IS_NEW) == true) {
                 userApplication.isNew = true
                 return true
             }

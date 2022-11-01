@@ -1,6 +1,8 @@
 package com.codejunior.inventoryapplication.model
 
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
+import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
+import com.google.firebase.firestore.DocumentSnapshot
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -28,6 +30,11 @@ class LoginModel @Inject constructor(private val firebaseAuth: FirebaseRepositor
         }
         println("A LA VERGA")
         return false
+    }
+
+    suspend fun getDataUserTable(): DocumentSnapshot {
+       val response =  firebaseAuth.getAllUserTable(firebaseAuth.getSession()!!.uid).await()
+       return response.documents[0]
     }
 
 }
