@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -84,6 +85,12 @@ class FirebaseRepository @Inject constructor(
             firebaseFirestore.collection(NameFirebase.TABLE_CATEGORY)
                 .whereEqualTo(NameFirebase.FIELD_CATEGORY_PROVIDER_ID, item)
                 .whereEqualTo(NameFirebase.FIELD_CATEGORY_USER_ID, getSession()!!.uid).get()
+        }
+    }
+
+    override suspend fun registerUser(email:String, pass:String): AuthResult {
+        return withContext(dispatcher){
+            firebaseAuth.createUserWithEmailAndPassword(email.trim(),pass.trim()).await()
         }
     }
 

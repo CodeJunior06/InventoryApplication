@@ -13,6 +13,8 @@
     <string name="emptyPassword">Password Field Is Empty, Please Entry Value</string>
     <string name="emptyEmailAndPassword">Email And Pass Field Is Empty, Please Entry Values</string>
     <string name="iniciar_sesion">Iniciar sesion</string>
+    <string name="register">Registrarse</string>
+    <string name="create_user">CREAR USUARIO</string>
     <string name="Name">Nombre</string>
     <string name="provider">Proveedor</string>
     <string name="availability">disponibilidad</string>

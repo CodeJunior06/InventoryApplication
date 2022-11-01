@@ -29,6 +29,8 @@ interface IFirebaseRepository {
 
     suspend fun getCategoryByProvider(item:String) : Task<QuerySnapshot>
 
+    suspend fun registerUser(email:String,pass:String) : AuthResult
+
     //NO SUSPEND
     fun getSession(): FirebaseUser?
 

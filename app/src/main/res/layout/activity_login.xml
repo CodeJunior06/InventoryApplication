@@ -108,19 +108,46 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/bill_back"
+                <LinearLayout
+                    android:layout_margin="5dp"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_pass"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_pass"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_pass">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register_login"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="@{()-> viewModelLogin.goToRegisterUSer()}"
+                    android:text="@string/register"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/bill_back"
+                    app:layout_constraintStart_toStartOf="@+id/txt_input_pass"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input_pass" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:paddingVertical="15dp"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    app:cornerRadius="12dp"
+                    android:id="@+id/bill_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:background="@drawable/shape_button"
+                    android:backgroundTint="#DD689DC3"
+                    android:layout_weight="4"
+                    android:elevation="3dp"
                     android:onClick="@{()-> viewModelLogin.initAuthentication()}"
                     android:text="@string/iniciar_sesion"
-                    android:textAllCaps="false"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline8"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    app:layout_constraintTop_toTopOf="@+id/guideline9" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input_pass" />
+            </LinearLayout>
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline6"
