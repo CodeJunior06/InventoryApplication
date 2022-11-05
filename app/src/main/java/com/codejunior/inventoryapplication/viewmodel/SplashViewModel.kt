@@ -6,6 +6,7 @@ import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
@@ -19,6 +20,7 @@ class SplashViewModel @Inject constructor(private val firebaseRepository: Fireba
         viewModelScope.launch {
             val responseUser = firebaseRepository.getSession()
             if (responseUser?.uid == null) {
+                delay(3000)
                 navigation.value = Navigation.GO_LOGIN_VIEW
             } else {
                launch(Dispatchers.Main) {

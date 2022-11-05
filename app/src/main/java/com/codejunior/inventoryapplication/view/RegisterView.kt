@@ -31,7 +31,7 @@ class RegisterView : AppCompatActivity() {
         }
         registerViewModel.success.observe(this) {
             toastMessage(it)
-            CoroutineScope(Dispatchers.Unconfined).launch{
+            CoroutineScope(Dispatchers.IO).launch{
                 registerViewModel.registerUser()
             }
             finish()

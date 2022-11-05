@@ -24,7 +24,7 @@ class CategoryModel @Inject constructor(private val  firebaseRepository:Firebase
     }
 
     suspend fun getDataAllProvider() : ArrayList<Provider>{
-        val response = firebaseRepository.getAllProviderFB().await()
+        val response = firebaseRepository.getAllProviderByUser().await()
         for (model in response) {
             println("MODEL DB " + model.get("providerName"))
             lstProvider.add(

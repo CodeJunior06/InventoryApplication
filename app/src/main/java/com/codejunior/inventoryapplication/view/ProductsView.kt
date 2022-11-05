@@ -2,11 +2,14 @@ package com.codejunior.inventoryapplication.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProductsBinding
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
@@ -54,6 +57,7 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
             val lst = mutableListOf(
                 binding!!.edtName.editText?.text.toString(),
                 binding!!.edtProvider.editText?.text.toString(),
+                binding!!.edtTotal.editText?.text.toString(),
                 binding!!.edtDisponibilidad.editText?.text.toString(),
                 binding!!.edtStock.editText?.text.toString(),
                 binding!!.edtCategories.editText?.text.toString(),
@@ -79,30 +83,79 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
             toastMessage(it)
         }
 
-        productsViewModel.onLoadingCategory.observe(this){
-            if(it){
+        productsViewModel.onLoadingCategory.observe(this) {
+            if (it) {
                 binding!!.linearCategory.visibility = View.GONE
-            }else{
+            } else {
                 binding!!.linearCategory.visibility = View.VISIBLE
             }
         }
 
-        productsViewModel.arrayCategoryName.observe(this){
+        productsViewModel.arrayCategoryName.observe(this) {
             val arrayAdapterCategory = ArrayAdapter(this, R.layout.dropdown_item, it)
             binding!!.dropdownCategory.setAdapter(arrayAdapterCategory)
-            productsViewModel.onLoadingOrTextView.value =true
+            productsViewModel.onLoadingOrTextView.value = true
         }
 
-        productsViewModel.onLoadingOrTextView.observe(this){
-            if(it){
+        productsViewModel.onLoadingOrTextView.observe(this) {
+            if (it) {
                 binding!!.lottieLoading.visibility = View.GONE
                 binding!!.edtCategories.visibility = View.VISIBLE
                 binding!!.lottieLoading.repeatMode
-            }else{
+            } else {
                 binding!!.lottieLoading.visibility = View.VISIBLE
                 binding!!.edtCategories.visibility = View.GONE
             }
         }
+
+        binding!!.edt2Total.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                println("d "+s)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                println("s "+s)
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                println("f "+ s.toString())
+                kotlin.runCatching {
+                    binding!!.edtStock.editText!!.setText(
+                        ((s?.toString()
+                            ?.toInt() ?: "0".toInt())- (binding?.edt2Disponibilidad?.text?.toString()?.toInt()
+                            ?: "0".toInt()) ).toString()
+                    )
+                }.onFailure {
+                    binding!!.edtStock.editText?.setText("0")
+                }
+
+            }
+
+        })
+
+        binding!!.edt2Disponibilidad.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                println()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                println()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                kotlin.runCatching {
+                    binding!!.edtStock.editText!!.setText(
+                        ((binding?.edt2Total?.text?.toString()?.toInt()
+                            ?: "0".toInt()) - (s?.toString()
+                            ?.toInt() ?: "0".toInt())).toString()
+                    )
+                }.onFailure {
+                    binding!!.edtStock.editText?.setText("0")
+                }
+
+            }
+
+        })
     }
 
     override fun onStart() {

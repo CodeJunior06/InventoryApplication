@@ -6,9 +6,10 @@ data class Product(
     val productID:String = UUID.randomUUID().toString(),
     val productName: String,
     val productProvider: String,
+    val productTotal:Int,
     val productAvailability: Int,
     val productStock: Int,
     val productCategory: String,
-    val productCost: Int,
+    val productCost: Long,
     val productUserID:String
 )

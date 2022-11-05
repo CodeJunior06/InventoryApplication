@@ -3,7 +3,6 @@ package com.codejunior.inventoryapplication.model
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
-import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -15,10 +14,11 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
             Product(
                 productName = lst[0],
                 productProvider = lst[1],
-                productAvailability = lst[2].toInt(),
-                productStock = lst[3].toInt(),
-                productCategory = lst[4],
-                productCost = lst[5].toInt(),
+                productTotal = lst[2].toInt(),
+                productAvailability = lst[3].toInt(),
+                productStock = lst[4].toInt(),
+                productCategory = lst[5],
+                productCost = lst[6].toLong(),
                 productUserID = firebaseRepository.getSession()!!.uid
             )
         firebaseRepository.insertProduct(productsIngress).await()
@@ -26,7 +26,7 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
     }
 
     suspend fun getDataAllProvider() : ArrayList<String> {
-        val response = firebaseRepository.getAllProviderFB().await()
+        val response = firebaseRepository.getAllProviderByUser().await()
         for (model in response) {
             println("MODEL DB " + model.get("providerName"))
             lstProvider.add(

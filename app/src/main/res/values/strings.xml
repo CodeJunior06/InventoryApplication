@@ -17,8 +17,9 @@
     <string name="create_user">CREAR USUARIO</string>
     <string name="Name">Nombre</string>
     <string name="provider">Proveedor</string>
-    <string name="availability">disponibilidad</string>
-    <string name="stock">stock Minimo</string>
+    <string name="total_items">Total Del Producto</string>
+    <string name="availability">Disponibilidad</string>
+    <string name="stock">Stock Minimo</string>
     <string name="save">Guardar</string>
     <string name="image">Imagen</string>
     <string name="err_firebase">ERROR FIREBASE</string>

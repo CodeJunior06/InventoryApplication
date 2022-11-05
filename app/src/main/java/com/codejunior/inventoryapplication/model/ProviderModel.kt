@@ -23,7 +23,7 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
 
     suspend fun getAllProvider(): List<Provider> {
         lst.clear()
-        val response = firebaseRepository.getAllProviderFB().await()
+        val response = firebaseRepository.getAllProviderByUser().await()
         for (model in response) {
             println("MODEL DB " + model.get("providerName"))
             lst.add(

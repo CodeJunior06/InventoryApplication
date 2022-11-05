@@ -19,7 +19,7 @@ interface IFirebaseRepository {
 
     suspend fun insertProvider(provider: Provider): Task<Void>
 
-    suspend fun getAllProviderFB(): Task<QuerySnapshot>
+    suspend fun getAllProviderByUser(): Task<QuerySnapshot>
 
     suspend fun getAllUserTable(id:String): Task<QuerySnapshot>
 

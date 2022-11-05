@@ -99,18 +99,19 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edt_provider"
-            android:layout_marginTop="15dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/edt_name">
@@ -164,13 +165,43 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/total_items"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/linear_category" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_total"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_total">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt2_total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
             android:id="@+id/tv_disponibilidad"
             android:layout_width="0dp"
-            android:layout_height="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="15dp"
             android:text="@string/availability"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="@+id/edt_name"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
             app:layout_constraintTop_toBottomOf="@+id/linear_category" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -178,14 +209,16 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline16"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
             app:layout_constraintTop_toBottomOf="@+id/tv_disponibilidad">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:id="@+id/edt2_disponibilidad"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,47 +229,55 @@
             android:layout_marginTop="15dp"
             android:text="@string/stock"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/guideline16"
-            app:layout_constraintTop_toBottomOf="@+id/linear_category" />
+            app:layout_constraintEnd_toEndOf="@+id/edt_total"
+            app:layout_constraintStart_toStartOf="@+id/tv_total"
+            app:layout_constraintTop_toBottomOf="@+id/edt_total" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edt_stock"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintEnd_toEndOf="@+id/edt_total"
+            app:layout_constraintStart_toStartOf="@+id/tv_stock"
             app:layout_constraintTop_toBottomOf="@+id/tv_stock">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt2_stock"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:clickable="false"
+                android:focusable="false"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_presentation_of_the_product"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/costo_producto"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/edt_stock" />
+            app:layout_constraintEnd_toEndOf="@+id/edt_disponibilidad"
+            app:layout_constraintStart_toStartOf="@+id/tv_disponibilidad"
+            app:layout_constraintTop_toBottomOf="@+id/edt_disponibilidad" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edt_coste"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintEnd_toEndOf="@+id/edt_disponibilidad"
+            app:layout_constraintStart_toStartOf="@+id/tv_presentation_of_the_product"
             app:layout_constraintTop_toBottomOf="@+id/tv_presentation_of_the_product">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -249,8 +290,8 @@
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/edt_coste"
-            app:layout_constraintStart_toStartOf="@+id/edt_coste"
-            app:layout_constraintTop_toBottomOf="@+id/edt_coste" />
+            app:layout_constraintStart_toStartOf="@+id/edt_stock"
+            app:layout_constraintTop_toBottomOf="@+id/edt_stock" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

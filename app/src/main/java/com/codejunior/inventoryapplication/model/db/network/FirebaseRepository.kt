@@ -53,7 +53,7 @@ class FirebaseRepository @Inject constructor(
         }
     }
 
-    override suspend fun getAllProviderFB(): Task<QuerySnapshot> {
+    override suspend fun getAllProviderByUser(): Task<QuerySnapshot> {
         return withContext(dispatcher) {
             firebaseFirestore.collection(NameFirebase.TABLE_PROVIDER)
                 .whereEqualTo(NameFirebase.FIELD_PROVIDER_USER_ID, getSession()!!.uid).get()
@@ -76,7 +76,7 @@ class FirebaseRepository @Inject constructor(
     override suspend fun updateUserTable(): Task<Void> {
         return withContext(dispatcher) {
             firebaseFirestore.collection(NameFirebase.TABLE_USER).document(getSession()!!.uid)
-                .update("isNew", false)
+                .update(NameFirebase.FIELD_USER_IS_NEW, false)
         }
     }
 
