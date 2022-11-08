@@ -65,6 +65,13 @@ class MainView : AppCompatActivity() {
                     }
                     mainViewModel.error.value = Error.ErrorNewUser.message
                 }
+                Navigation.GO_KARDEX_VIEW ->{
+                    if (!isNewUSerApplication()) {
+                        context.startActivity(intentKardexFromActivity())
+                        return@observe
+                    }
+                    mainViewModel.error.value = Error.ErrorNewUser.message
+                }
                 else -> println()
             }
         }
@@ -91,7 +98,7 @@ class MainView : AppCompatActivity() {
 
                     },
                     ButtonData(context.getString(R.string.kardex), R.drawable.kardex_icon) {
-
+                        mainViewModel.navigation.postValue(Navigation.GO_KARDEX_VIEW)
                     })
             )
             layoutManager = LinearLayoutManager(this@MainView)

@@ -1,12 +1,9 @@
 package com.codejunior.inventoryapplication.model.db.network
 
 import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
-import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
-import com.codejunior.inventoryapplication.model.db.network.model.Category
-import com.codejunior.inventoryapplication.model.db.network.model.Provider
-import com.codejunior.inventoryapplication.model.db.network.model.User
+import com.codejunior.inventoryapplication.model.db.network.model.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -101,6 +98,18 @@ class FirebaseRepository @Inject constructor(
                     userApplication.id, userApplication.isNew
                 )
             )
+    }
+
+    override suspend fun registerProcessKardex(kardex:Kardex) {
+        return withContext(dispatcher){
+            firebaseFirestore.collection(NameFirebase.TABLE_KARDEX).document().set(kardex)
+        }
+    }
+
+    override suspend fun getKardexByDay(date:String): Task<QuerySnapshot> {
+        return withContext(dispatcher){
+            firebaseFirestore.collection(NameFirebase.TABLE_KARDEX).whereEqualTo(NameFirebase.FIELD_KARDEX_DATE,date).get()
+        }
     }
 
 }

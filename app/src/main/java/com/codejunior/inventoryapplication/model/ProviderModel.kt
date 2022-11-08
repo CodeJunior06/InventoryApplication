@@ -2,13 +2,17 @@ package com.codejunior.inventoryapplication.model
 
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
+import com.codejunior.inventoryapplication.model.db.network.model.Kardex
 import com.codejunior.inventoryapplication.model.db.network.model.Provider
+import com.codejunior.inventoryapplication.utils.Utilities.Companion.getDateNow
+import com.codejunior.inventoryapplication.utils.Utilities.Companion.getDescription
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class ProviderModel @Inject constructor(private val firebaseRepository: FirebaseRepository) {
     private var lst: ArrayList<Provider> = ArrayList()
     suspend fun insertProvider(lstData: List<String>) {
+
         val modelProvider = Provider(
             providerName = lstData[0],
             providerTypeDocument = lstData[1],
@@ -18,6 +22,13 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
             providerAddress = lstData[5],
             providerUserID =  firebaseRepository.getSession()!!.uid
         )
+        val modelKardex = Kardex(
+            kardexNameProcess = "Add New Provider",
+            kardexDescription = getDescription("Provider",modelProvider),
+            kardexDate =  getDateNow(),
+            kardexUserID = firebaseRepository.getSession()!!.uid
+        )
+        firebaseRepository.registerProcessKardex(modelKardex)
         firebaseRepository.insertProvider(modelProvider).await()
     }
 

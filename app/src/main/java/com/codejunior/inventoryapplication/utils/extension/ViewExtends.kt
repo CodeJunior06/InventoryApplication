@@ -47,3 +47,8 @@ fun Fragment.intentCategoryFromFragment(): Intent {
 fun Activity.intentRegisterFromActivity(): Intent {
     return Intent(this, RegisterView::class.java)
 }
+
+
+fun Activity.intentKardexFromActivity(): Intent {
+    return Intent(this, KardexView::class.java)
+}

@@ -43,6 +43,11 @@ class NameFirebase {
         const val FIELD_USER_ID:String = "id"
         const val FIELD_USER_IS_NEW:String = "newUser"
 
+        const val FIELD_KARDEX_ID:String = "kardexID"
+        const val FIELD_KARDEX_NAME_PROCESS:String = "kardexNameProcess"
+        const val FIELD_KARDEX_DESCRIPTION:String = "kardexDescription"
+        const val FIELD_KARDEX_DATE:String = "kardexDate"
+
     }
 
 

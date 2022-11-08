@@ -9,7 +9,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProductsBinding
 import com.codejunior.inventoryapplication.utils.extension.toastMessage

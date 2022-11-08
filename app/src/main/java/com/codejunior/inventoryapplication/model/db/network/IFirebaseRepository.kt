@@ -3,6 +3,7 @@ package com.codejunior.inventoryapplication.model.db.network
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.model.Category
+import com.codejunior.inventoryapplication.model.db.network.model.Kardex
 import com.codejunior.inventoryapplication.model.db.network.model.Provider
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -32,6 +33,10 @@ interface IFirebaseRepository {
     suspend fun registerUser(email:String,pass:String) : AuthResult
 
     suspend fun registerUserTableFirestore()
+
+    suspend fun registerProcessKardex(kardex: Kardex)
+
+    suspend fun getKardexByDay(date:String) :  Task<QuerySnapshot>
 
     //NO SUSPEND
     fun getSession(): FirebaseUser?
