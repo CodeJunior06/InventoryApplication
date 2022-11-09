@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.codejunior.inventoryapplication.databinding.ActivityKardexViewBinding
+import com.codejunior.inventoryapplication.view.adapter.KardexAdapter
 import com.codejunior.inventoryapplication.viewmodel.KardexViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +25,9 @@ class KardexView : AppCompatActivity() {
         kardexViewModel.getKardex()
 
         kardexViewModel.getDataKardex.observe(this) {
+            binding!!.recyclerKardex.layoutManager = GridLayoutManager(this@KardexView, 2)
+            binding!!.recyclerKardex.adapter = KardexAdapter(it)
+
             kardexViewModel.viewLoading.postValue(false)
         }
         kardexViewModel.viewLoading.observe(this) {
