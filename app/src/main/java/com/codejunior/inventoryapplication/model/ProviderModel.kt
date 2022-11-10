@@ -13,6 +13,8 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
     private var lst: ArrayList<Provider> = ArrayList()
     suspend fun insertProvider(lstData: List<String>) {
 
+        val obj = ClassName.InsertProvider
+
         val modelProvider = Provider(
             providerName = lstData[0],
             providerTypeDocument = lstData[1],
@@ -20,13 +22,15 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
             providerPhone = lstData[3],
             providerEmail = lstData[4],
             providerAddress = lstData[5],
-            providerUserID =  firebaseRepository.getSession()!!.uid
+            providerUserID = firebaseRepository.getSession()!!.uid
         )
+
         val modelKardex = Kardex(
-            kardexNameProcess = "Add New Provider",
-            kardexDescription = getDescription("Provider",modelProvider),
-            kardexDate =  getDateNow(),
-            kardexUserID = firebaseRepository.getSession()!!.uid
+            kardexNameProcess = obj.title.message,
+            kardexDescription = getDescription(obj.module, modelProvider, obj.action),
+            kardexDate = getDateNow(),
+            kardexUserID = firebaseRepository.getSession()!!.uid,
+            kardexTypeModule = obj.module.name.uppercase()
         )
         firebaseRepository.registerProcessKardex(modelKardex)
         firebaseRepository.insertProvider(modelProvider).await()
@@ -45,10 +49,39 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
                     providerPhone = model.getString(NameFirebase.FIELD_PROVIDER_PHONE)!!,
                     providerEmail = model.getString(NameFirebase.FIELD_PROVIDER_EMAIL)!!,
                     providerAddress = model.getString(NameFirebase.FIELD_PROVIDER_ADDRESS)!!,
-                    providerUserID =  model.getString(NameFirebase.FIELD_PROVIDER_USER_ID)!!,
+                    providerUserID = model.getString(NameFirebase.FIELD_PROVIDER_USER_ID)!!,
                 )
             )
         }
         return lst
     }
+
+    enum class Module {
+        PROVIDER,
+        CATEGORY,
+        PRODUCT
+    }
+
+    enum class Title(val message: String) {
+        INSERT_PROVIDER("Add New Provider"),
+        DELETE_PROVIDER("Delete Provider"),
+        UPDATE_PROVIDER("Update Provider"),
+
+        INSERT_CATEGORY("Add New Category"),
+
+        INSERT_PRODUCT("Add New Product")
+    }
+
+    enum class Action {
+        INSERT,
+        UPDATE,
+        DELETE
+    }
+
+    sealed class ClassName(val title: Title, val module: Module, val action: Action) {
+        object InsertProvider : ClassName(Title.INSERT_PROVIDER, Module.PROVIDER, Action.INSERT)
+        object InsertCategory : ClassName(Title.INSERT_CATEGORY, Module.CATEGORY, Action.INSERT)
+        object InsertProduct : ClassName(Title.INSERT_PRODUCT, Module.PRODUCT, Action.INSERT)
+    }
 }
+

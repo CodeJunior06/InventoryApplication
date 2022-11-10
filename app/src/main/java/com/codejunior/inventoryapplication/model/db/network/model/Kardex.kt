@@ -7,11 +7,13 @@ data class Kardex(
     @JvmField
     val kardexID: String = UUID.randomUUID()?.toString() ?: "",
     @JvmField
-    val kardexNameProcess: String ="",
+    val kardexNameProcess: String = "",
     @JvmField
-    val kardexDescription: String ="",
+    val kardexDescription: String = "",
     @JvmField
     val kardexDate: String = "",
     @JvmField
-    val kardexUserID: String = ""
+    val kardexUserID: String = "",
+    @JvmField
+    val kardexTypeModule: String = ""
 ) : Serializable

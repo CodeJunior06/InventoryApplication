@@ -5,12 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.codejunior.inventoryapplication.R
+import com.codejunior.inventoryapplication.databinding.FragmentListSalesBinding
+import com.codejunior.inventoryapplication.viewmodel.SaleViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class FragmentListSales : Fragment() {
+
+    private var _binding:FragmentListSalesBinding? = null
+    private val binding get() = _binding
+
+    private val salesViewModel:SaleViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +29,13 @@ class FragmentListSales : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_sales, container, false)
+    ): View {
+        _binding = FragmentListSalesBinding.inflate(inflater,container,false)
+        return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 }

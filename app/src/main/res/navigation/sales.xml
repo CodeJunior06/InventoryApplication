@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sales">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sales"
+    app:startDestination="@id/fragmentListSales">
+    <fragment
+        android:id="@+id/fragmentListSales"
+        android:name="com.codejunior.inventoryapplication.view.fragments.FragmentListSales"
+        android:label="fragment_list_sales"
+        tools:layout="@layout/fragment_list_sales" >
+        <action
+            android:id="@+id/action_fragmentListSales_to_fragmentCreateSales"
+            app:destination="@id/fragmentCreateSales" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCreateSales"
+        android:name="com.codejunior.inventoryapplication.view.fragments.FragmentCreateSales"
+        android:label="fragment_create_sales"
+        tools:layout="@layout/fragment_create_sales" />
 </navigation>

@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.codejunior.inventoryapplication.databinding.ActivitySaleViewBinding
 import com.codejunior.inventoryapplication.viewmodel.SaleViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class SaleView : AppCompatActivity() {
 
