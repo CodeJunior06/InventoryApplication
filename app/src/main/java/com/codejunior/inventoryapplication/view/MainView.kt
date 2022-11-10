@@ -72,6 +72,14 @@ class MainView : AppCompatActivity() {
                     }
                     mainViewModel.error.value = Error.ErrorNewUser.message
                 }
+                Navigation.GO_SALE_VIEW ->{
+                    if (!isNewUSerApplication()) {
+                        context.startActivity(intentSaleFromActivity())
+                        return@observe
+                    }
+                    mainViewModel.error.value = Error.ErrorNewUser.message
+
+                }
                 else -> println()
             }
         }
@@ -95,6 +103,7 @@ class MainView : AppCompatActivity() {
                         mainViewModel.navigation.postValue(Navigation.GO_PRODUCTS_VIEW)
                     },
                     ButtonData(context.getString(R.string.sales), R.drawable.ventas_icon) {
+                        mainViewModel.navigation.postValue(Navigation.GO_SALE_VIEW)
 
                     },
                     ButtonData(context.getString(R.string.kardex), R.drawable.kardex_icon) {

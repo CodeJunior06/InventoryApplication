@@ -16,7 +16,8 @@ enum class Navigation {
     GO_PRODUCTS_VIEW,
     GO_CATEGORY_VIEW,
     GO_REGISTER_VIEW,
-    GO_KARDEX_VIEW
+    GO_KARDEX_VIEW,
+    GO_SALE_VIEW
 }
 
 sealed class Success(val message: String) {

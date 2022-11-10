@@ -52,3 +52,7 @@ fun Activity.intentRegisterFromActivity(): Intent {
 fun Activity.intentKardexFromActivity(): Intent {
     return Intent(this, KardexView::class.java)
 }
+
+fun Activity.intentSaleFromActivity(): Intent {
+    return Intent(this, SaleView::class.java)
+}

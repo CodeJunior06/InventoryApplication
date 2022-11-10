@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.codejunior.inventoryapplication.databinding.ActivityKardexViewBinding
 import com.codejunior.inventoryapplication.view.adapter.KardexAdapter
 import com.codejunior.inventoryapplication.viewmodel.KardexViewModel
@@ -25,7 +27,7 @@ class KardexView : AppCompatActivity() {
         kardexViewModel.getKardex()
 
         kardexViewModel.getDataKardex.observe(this) {
-            binding!!.recyclerKardex.layoutManager = GridLayoutManager(this@KardexView, 2)
+            binding!!.recyclerKardex.layoutManager = LinearLayoutManager(this)
             binding!!.recyclerKardex.adapter = KardexAdapter(it)
 
             kardexViewModel.viewLoading.postValue(false)
@@ -41,5 +43,10 @@ class KardexView : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ManageSystemUI.hideSystemUI(window)
     }
 }
