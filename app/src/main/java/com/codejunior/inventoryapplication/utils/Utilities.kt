@@ -82,10 +82,10 @@ class Utilities {
                 PROVIDER.name.uppercase()-> {
                     ContextCompat.getColor(context, R.color.providerColor)
                 }
-                ProviderModel.Title.INSERT_CATEGORY.message->{
+                CATEGORY.name.uppercase()->{
                     ContextCompat.getColor(context, R.color.categoryColor)
                 }
-                ProviderModel.Title.INSERT_PRODUCT.message->{
+                PRODUCT.name.uppercase()->{
                     ContextCompat.getColor(context, R.color.productColor)
                 }else -> 0
 

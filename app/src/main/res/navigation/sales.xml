@@ -17,5 +17,9 @@
         android:id="@+id/fragmentCreateSales"
         android:name="com.codejunior.inventoryapplication.view.fragments.FragmentCreateSales"
         android:label="fragment_create_sales"
-        tools:layout="@layout/fragment_create_sales" />
+        tools:layout="@layout/fragment_create_sales" >
+        <action
+            android:id="@+id/action_fragmentCreateSales_to_fragmentListSales"
+            app:destination="@id/fragmentListSales" />
+    </fragment>
 </navigation>

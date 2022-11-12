@@ -3,6 +3,7 @@ package com.codejunior.inventoryapplication.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.graphics.component2
 import com.codejunior.inventoryapplication.databinding.ActivitySaleViewBinding
 import com.codejunior.inventoryapplication.viewmodel.SaleViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,5 +27,17 @@ class SaleView : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         ManageSystemUI.hideSystemUI(window)
+    }
+
+    override fun onBackPressed() {
+        val count = supportFragmentManager.backStackEntryCount
+
+        if (count == 0) {
+            super.onBackPressed()
+            //additional code
+        } else {
+            supportFragmentManager.popBackStack()
+        }
+
     }
 }

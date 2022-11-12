@@ -3,6 +3,8 @@ package com.codejunior.inventoryapplication.model
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
+import com.codejunior.inventoryapplication.model.db.network.model.Kardex
+import com.codejunior.inventoryapplication.utils.Utilities
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -10,7 +12,10 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
     private var lstProvider: ArrayList<String> = ArrayList()
     private var lstCategory: ArrayList<String> = ArrayList()
     suspend fun insertProductDB(lst: List<String>): Boolean {
-        val productsIngress =
+
+        val action = ProviderModel.ClassName.InsertProduct
+
+        val modelProduct =
             Product(
                 productName = lst[0],
                 productProvider = lst[1],
@@ -21,23 +26,38 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
                 productCost = lst[6].toLong(),
                 productUserID = firebaseRepository.getSession()!!.uid
             )
-        firebaseRepository.insertProduct(productsIngress).await()
+
+        val modelKardex = Kardex(
+            kardexNameProcess = action.title.message,
+            kardexDescription = Utilities.getDescription(
+                action.module,
+                modelProduct,
+                action.action
+            ),
+            kardexDate = Utilities.getDateNow(),
+            kardexUserID = firebaseRepository.getSession()!!.uid,
+            kardexTypeModule = action.module.name.uppercase()
+        )
+
+        firebaseRepository.registerProcessKardex(modelKardex)
+        firebaseRepository.insertProduct(modelProduct).await()
+
         return true
     }
 
-    suspend fun getDataAllProvider() : ArrayList<String> {
+    suspend fun getDataAllProvider(): ArrayList<String> {
         val response = firebaseRepository.getAllProviderByUser().await()
         for (model in response) {
             println("MODEL DB " + model.get("providerName"))
             lstProvider.add(
-                    model.getString(NameFirebase.FIELD_PROVIDER_NAME)!!,
-                )
+                model.getString(NameFirebase.FIELD_PROVIDER_NAME)!!,
+            )
         }
         return lstProvider
 
     }
 
-    suspend fun searchCategory(item: String) : ArrayList<String>{
+    suspend fun searchCategory(item: String): ArrayList<String> {
         lstCategory.clear()
         val response = firebaseRepository.getCategoryByProvider(item).await()
         for (model in response) {
