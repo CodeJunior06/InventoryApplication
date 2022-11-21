@@ -215,10 +215,10 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_disponibilidad">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
                 android:id="@+id/edt2_disponibilidad"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,11 +246,10 @@
                 android:id="@+id/edt2_stock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:background="@android:color/transparent"
                 android:clickable="false"
-                android:focusable="false"
-                />
+                android:enabled="false"
+                android:focusable="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -277,10 +276,28 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:id="@+id/itemSelected"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/edt_stock" />
+
+        <ImageView
+            android:id="@+id/uploadPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_baseline_cloud_upload"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/itemSelected" />
 
         <Button
             android:id="@+id/button"
@@ -289,9 +306,9 @@
             android:background="@drawable/shape_button"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/edt_coste"
-            app:layout_constraintStart_toStartOf="@+id/edt_stock"
-            app:layout_constraintTop_toBottomOf="@+id/edt_stock" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/uploadPhoto" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

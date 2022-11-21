@@ -7,6 +7,9 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.R
@@ -24,6 +27,16 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var _binding: ActivityProductsBinding? = null
     private val binding get() = _binding
     private val productsViewModel: ProductsViewModel by viewModels()
+
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){
+        if ( it != null){
+            //La URI se pasa a firestore
+            binding!!.itemSelected.setImageURI(it)
+        }else{
+            Toast.makeText(applicationContext,"SOT SELECT",Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,6 +168,10 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
             }
 
         })
+
+        binding!!.uploadPhoto.setOnClickListener{
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     override fun onStart() {
