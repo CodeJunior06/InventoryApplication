@@ -1,5 +1,6 @@
 package com.codejunior.inventoryapplication.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.codejunior.inventoryapplication.model.ProductModel
@@ -33,12 +34,6 @@ class ProductsViewModel @Inject constructor(private val productModel: ProductMod
         }
     }
 
-    private fun validEmptyString(lst: List<String>): Boolean {
-        return lst.all {
-            it.isNotEmpty()
-        }
-    }
-
     private var lstProvider:ArrayList<String> = ArrayList()
     suspend fun getDataProvider(){
 
@@ -56,6 +51,10 @@ class ProductsViewModel @Inject constructor(private val productModel: ProductMod
                productModel.searchCategory(item)
         }
         arrayCategoryName.value = response.await()
+    }
+
+    fun setImageURI(it: Uri) {
+        productModel.setImageURI(it)
     }
 
 }

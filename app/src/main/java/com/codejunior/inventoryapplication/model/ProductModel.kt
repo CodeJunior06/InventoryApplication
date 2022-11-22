@@ -1,5 +1,6 @@
 package com.codejunior.inventoryapplication.model
 
+import android.net.Uri
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.db.network.FirebaseRepository
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
@@ -11,6 +12,7 @@ import javax.inject.Inject
 class ProductModel @Inject constructor(private val firebaseRepository: FirebaseRepository) {
     private var lstProvider: ArrayList<String> = ArrayList()
     private var lstCategory: ArrayList<String> = ArrayList()
+    private lateinit var uri: Uri
     suspend fun insertProductDB(lst: List<String>): Boolean {
 
         val action = ProviderModel.ClassName.InsertProduct
@@ -41,7 +43,8 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
 
         firebaseRepository.registerProcessKardex(modelKardex)
         firebaseRepository.insertProduct(modelProduct).await()
-
+        val name = firebaseRepository.insertImage(uri, modelProduct.productID).task.snapshot.uploadSessionUri
+        println("PHOTO $name")
         return true
     }
 
@@ -68,5 +71,9 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
         }
         return lstCategory
 
+    }
+
+    fun setImageURI(it: Uri) {
+        this.uri = it
     }
 }

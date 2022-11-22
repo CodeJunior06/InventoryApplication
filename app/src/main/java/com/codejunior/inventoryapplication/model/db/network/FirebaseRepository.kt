@@ -1,5 +1,6 @@
 package com.codejunior.inventoryapplication.model.db.network
 
+import android.net.Uri
 import com.codejunior.inventoryapplication.InventoryApplication.Companion.userApplication
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.constants.NameFirebase
@@ -10,6 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -20,7 +23,8 @@ import javax.inject.Singleton
 @Singleton
 class FirebaseRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val firebaseFirestore: FirebaseFirestore
+    private val firebaseFirestore: FirebaseFirestore,
+    private val firebaseStorage:FirebaseStorage
 ) : IFirebaseRepository {
 
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -109,6 +113,12 @@ class FirebaseRepository @Inject constructor(
     override suspend fun getKardexByDay(date:String): Task<QuerySnapshot> {
         return withContext(dispatcher){
             firebaseFirestore.collection(NameFirebase.TABLE_KARDEX).whereEqualTo(NameFirebase.FIELD_KARDEX_DATE,date).get()
+        }
+    }
+
+    override suspend fun insertImage(uri: Uri, idProduct:String): UploadTask.TaskSnapshot {
+        return withContext(dispatcher){
+            firebaseStorage.getReference(getSession()!!.uid).child("product").child(idProduct).putFile(uri).result
         }
     }
 
