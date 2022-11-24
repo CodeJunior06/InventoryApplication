@@ -116,9 +116,9 @@ class FirebaseRepository @Inject constructor(
         }
     }
 
-    override suspend fun insertImage(uri: Uri, idProduct:String): UploadTask.TaskSnapshot {
+    override suspend fun insertImage(uri: Uri, idProduct:String): UploadTask {
         return withContext(dispatcher){
-            firebaseStorage.getReference(getSession()!!.uid).child("product").child(idProduct).putFile(uri).result
+            firebaseStorage.getReference(getSession()!!.uid).child("product").child(idProduct).putFile(uri)
         }
     }
 

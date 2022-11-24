@@ -40,7 +40,7 @@ interface IFirebaseRepository {
 
     suspend fun getKardexByDay(date:String) :  Task<QuerySnapshot>
 
-    suspend fun insertImage(uri:Uri,idProduct:String): UploadTask.TaskSnapshot
+    suspend fun insertImage(uri:Uri,idProduct:String): UploadTask
 
     //NO SUSPEND
     fun getSession(): FirebaseUser?
