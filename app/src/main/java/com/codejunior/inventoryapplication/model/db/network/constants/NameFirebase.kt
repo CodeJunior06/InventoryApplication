@@ -20,7 +20,7 @@ class NameFirebase {
         const val FIELD_PROVIDER_DOCUMENT: String = "providerDocument"
         const val FIELD_PROVIDER_PHONE: String = "providerPhone"
         const val FIELD_PROVIDER_EMAIL: String = "providerEmail"
-        const val FIELD_PROVIDER_ADDRESS: String = "providerAddress"
+        const val FIELD_PROVIDER_COMPANY: String = "providerCompany"
         const val FIELD_PROVIDER_USER_ID: String = "providerUserID"
 
         //Category

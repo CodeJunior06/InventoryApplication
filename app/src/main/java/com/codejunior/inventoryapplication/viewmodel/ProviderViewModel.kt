@@ -34,12 +34,6 @@ class ProviderViewModel @Inject constructor(private val modelProvider: ProviderM
 
     }
 
-    private fun validEmptyString(lst: List<String>): Boolean {
-        return lst.all {
-            it.isNotEmpty()
-        }
-    }
-
     fun getDataProvider() {
         viewModelScope.launch {
             lst = emptyList()

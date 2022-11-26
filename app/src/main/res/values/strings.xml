@@ -31,7 +31,7 @@
     <string name="document_number">Número de documento</string>
     <string name="telphone_number">Teléfono</string>
     <string name="e_mail">E-mail</string>
-    <string name="address">Dirección</string>
+    <string name="company">Company</string>
 
     <string-array name="type_document">
         <item>Cedula De Ciudania</item>

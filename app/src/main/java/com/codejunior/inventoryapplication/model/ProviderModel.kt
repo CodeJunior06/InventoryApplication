@@ -21,7 +21,7 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
             providerDocument = lstData[2],
             providerPhone = lstData[3],
             providerEmail = lstData[4],
-            providerAddress = lstData[5],
+            providerCompany = lstData[5],
             providerUserID = firebaseRepository.getSession()!!.uid
         )
 
@@ -48,7 +48,7 @@ class ProviderModel @Inject constructor(private val firebaseRepository: Firebase
                     providerDocument = model.getString(NameFirebase.FIELD_PROVIDER_DOCUMENT)!!,
                     providerPhone = model.getString(NameFirebase.FIELD_PROVIDER_PHONE)!!,
                     providerEmail = model.getString(NameFirebase.FIELD_PROVIDER_EMAIL)!!,
-                    providerAddress = model.getString(NameFirebase.FIELD_PROVIDER_ADDRESS)!!,
+                    providerCompany = model.getString(NameFirebase.FIELD_PROVIDER_COMPANY)!!,
                     providerUserID = model.getString(NameFirebase.FIELD_PROVIDER_USER_ID)!!,
                 )
             )

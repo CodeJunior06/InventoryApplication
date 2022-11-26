@@ -1,5 +1,6 @@
 package com.codejunior.inventoryapplication.model.db.network
 
+import android.net.Uri
 import com.codejunior.inventoryapplication.model.db.network.model.Product
 import com.codejunior.inventoryapplication.model.UserFirebase
 import com.codejunior.inventoryapplication.model.db.network.model.Category
@@ -9,6 +10,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.storage.UploadTask
 
 
 interface IFirebaseRepository {
@@ -37,6 +39,8 @@ interface IFirebaseRepository {
     suspend fun registerProcessKardex(kardex: Kardex)
 
     suspend fun getKardexByDay(date:String) :  Task<QuerySnapshot>
+
+    suspend fun insertImage(uri:Uri,idProduct:String): UploadTask
 
     //NO SUSPEND
     fun getSession(): FirebaseUser?

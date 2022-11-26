@@ -20,6 +20,12 @@ enum class Navigation {
     GO_SALE_VIEW
 }
 
+fun validEmptyString(lst: List<String>): Boolean {
+    return lst.all {
+        it.isNotEmpty()
+    }
+}
+
 sealed class Success(val message: String) {
     object SuccessLogin : Success("Credential Success")
     object SuccessLogOut : Success("Exit System")

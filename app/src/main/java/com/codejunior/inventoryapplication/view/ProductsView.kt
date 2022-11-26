@@ -7,6 +7,9 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.codejunior.inventoryapplication.R
@@ -24,6 +27,19 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var _binding: ActivityProductsBinding? = null
     private val binding get() = _binding
     private val productsViewModel: ProductsViewModel by viewModels()
+
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
+        if (it != null) {
+            //The URI  pass a storage
+            println("URI: $it")
+            productsViewModel.setImageURI(it)
+            binding!!.itemSelected.visibility = View.VISIBLE
+            binding!!.itemSelected.setImageURI(it)
+        } else {
+            Toast.makeText(applicationContext, "NOT SELECT", Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,20 +125,22 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
 
         binding!!.edt2Total.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                println("d "+s)
+                println("d " + s)
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                println("s "+s)
+                println("s " + s)
             }
 
             override fun afterTextChanged(s: Editable?) {
-                println("f "+ s.toString())
+                println("f " + s.toString())
                 kotlin.runCatching {
                     binding!!.edtStock.editText!!.setText(
                         ((s?.toString()
-                            ?.toInt() ?: "0".toInt())- (binding?.edt2Disponibilidad?.text?.toString()?.toInt()
-                            ?: "0".toInt()) ).toString()
+                            ?.toInt()
+                            ?: "0".toInt()) - (binding?.edt2Disponibilidad?.text?.toString()
+                            ?.toInt()
+                            ?: "0".toInt())).toString()
                     )
                 }.onFailure {
                     binding!!.edtStock.editText?.setText("0")
@@ -155,6 +173,10 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
             }
 
         })
+
+        binding!!.uploadPhoto.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     override fun onStart() {
@@ -168,6 +190,7 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
         val item = parent?.getItemAtPosition(position).toString()
         CoroutineScope(Dispatchers.Main).launch {
             productsViewModel.getCategoryByProvider(item)
