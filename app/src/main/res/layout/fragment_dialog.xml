@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="5dp"
+    app:cardCornerRadius="15dp"
+    android:background="?attr/colorPrimary"
     tools:context=".view.fragments.FragmentDialog">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="25dp"
+        android:paddingVertical="15dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="TextView" />
 
         <LinearLayout
+            android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -28,19 +36,26 @@
 
             <Button
                 android:id="@+id/button1"
+                android:layout_marginHorizontal="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_weight="1" />
 
             <Button
                 android:id="@+id/button2"
+                android:layout_marginHorizontal="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Button"
+                android:textColor="@color/black"
+                style="@style/Widget.MaterialComponents.Button"/>
 
 
         </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+</androidx.cardview.widget.CardView>

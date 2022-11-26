@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/kardex"
+    app:startDestination="@id/fragmentListKardex">
+
+    <fragment
+        android:id="@+id/fragmentKardexProduct"
+        android:name="com.codejunior.inventoryapplication.view.fragments.FragmentKardexProduct"
+        android:label="fragment_kardex_product"
+        tools:layout="@layout/fragment_kardex_product" />
+    <fragment
+        android:id="@+id/fragmentListKardex"
+        android:name="com.codejunior.inventoryapplication.view.fragments.FragmentListKardex"
+        android:label="FragmentListKardex" >
+        <action
+            android:id="@+id/action_fragmentListKardex_to_fragmentKardexProduct"
+            app:destination="@id/fragmentKardexProduct" />
+    </fragment>
+</navigation>

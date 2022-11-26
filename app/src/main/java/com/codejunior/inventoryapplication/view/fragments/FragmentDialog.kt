@@ -10,7 +10,7 @@ import com.codejunior.inventoryapplication.databinding.FragmentDialogBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FragmentDialog constructor(onResponse: (Boolean) -> Unit): DialogFragment() {
+class FragmentDialog constructor(private val onResponse: (Boolean) -> Unit): DialogFragment() {
     private lateinit var binding: FragmentDialogBinding
     private lateinit var dialog: AlertDialog.Builder
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -19,6 +19,24 @@ class FragmentDialog constructor(onResponse: (Boolean) -> Unit): DialogFragment(
         dialog = AlertDialog.Builder(requireContext())
 
         dialog.setView(binding.root)
+
+        binding.tittle.text = "DESEA INGRESAR UN PRODUCTO"
+
+        binding.button1.apply {
+            text = "YA EXISTENTE"
+            setOnClickListener {
+                onResponse.invoke(false)
+                dismiss()
+            }
+        }
+
+        binding.button2.apply {
+            text = "NUEVO"
+            setOnClickListener {
+                onResponse.invoke(true)
+                dismiss()
+            }
+        }
 
         dialog.setCancelable(true)
 

@@ -17,32 +17,10 @@ class KardexView : AppCompatActivity() {
     private var _binding: ActivityKardexViewBinding? = null
     private val binding get() = _binding
 
-    private val kardexViewModel: KardexViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityKardexViewBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-
-        kardexViewModel.getKardex()
-
-        kardexViewModel.getDataKardex.observe(this) {
-            binding!!.recyclerKardex.layoutManager = LinearLayoutManager(this)
-            binding!!.recyclerKardex.adapter = KardexAdapter(it)
-
-            kardexViewModel.viewLoading.postValue(false)
-        }
-        kardexViewModel.viewLoading.observe(this) {
-            if (it) {
-                binding!!.constraintLoading.visibility = View.VISIBLE
-                binding!!.constraintKardex.visibility = View.GONE
-
-            } else {
-                binding!!.constraintLoading.visibility = View.GONE
-                binding!!.constraintKardex.visibility = View.VISIBLE
-            }
-        }
-
     }
 
     override fun onResume() {

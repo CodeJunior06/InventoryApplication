@@ -42,6 +42,8 @@ interface IFirebaseRepository {
 
     suspend fun insertImage(uri:Uri,idProduct:String): UploadTask
 
+    suspend fun getAllProduct() : Task<QuerySnapshot>
+
     //NO SUSPEND
     fun getSession(): FirebaseUser?
 

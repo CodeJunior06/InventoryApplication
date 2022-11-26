@@ -1,6 +1,9 @@
 package com.codejunior.inventoryapplication.view
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,10 +11,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.codejunior.inventoryapplication.R
 import com.codejunior.inventoryapplication.databinding.ActivityProductsBinding
 import com.codejunior.inventoryapplication.utils.extension.toastMessage
@@ -28,8 +31,28 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
     private val binding get() = _binding
     private val productsViewModel: ProductsViewModel by viewModels()
 
+    private var requestPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                pickPhotoFromGallery()
+            } else {
+                Toast.makeText(this, "Need Permission", Toast.LENGTH_LONG).show()
+            }
+        }
+    private var startForActivityGallery =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val data = it.data!!.data
+                productsViewModel.setImageURI(data!!)
+                binding!!.itemSelected.visibility = View.VISIBLE
+                binding!!.itemSelected.setImageURI(data)
+            } else {
+                Toast.makeText(applicationContext, "NOT SELECT", Toast.LENGTH_LONG).show()
+            }
+        }
 
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
+
+/*    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
         if (it != null) {
             //The URI  pass a storage
             println("URI: $it")
@@ -39,7 +62,7 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
         } else {
             Toast.makeText(applicationContext, "NOT SELECT", Toast.LENGTH_LONG).show()
         }
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -175,8 +198,28 @@ class ProductsView : AppCompatActivity(), AdapterView.OnItemClickListener {
         })
 
         binding!!.uploadPhoto.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                when (PackageManager.PERMISSION_GRANTED) {
+                    ContextCompat.checkSelfPermission(
+                        this,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) -> {
+                        pickPhotoFromGallery()
+                    }
+                    else -> requestPermission.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            } else {
+                pickPhotoFromGallery()
+            }
+
         }
+    }
+
+    private fun pickPhotoFromGallery() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        startForActivityGallery.launch(intent)
+
     }
 
     override fun onStart() {

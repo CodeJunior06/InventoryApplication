@@ -11,7 +11,7 @@ class ProviderHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(provider: Provider) {
         binding.tvNameProviders.text = provider.providerName
-        binding.tvEmailProvider.text = provider.providerEmail
-        binding.tvTelefonoProvider.text = provider.providerPhone
+        binding.tvPhoneProvider.text = provider.providerPhone
+        binding.tvCompanyProvider.text = provider.providerCompany
     }
 }

@@ -27,9 +27,9 @@ class ProductModel @Inject constructor(private val firebaseRepository: FirebaseR
                 Product(
                     productName = lst[0],
                     productProvider = lst[1],
-                    productTotal = lst[2].toInt(),
-                    productAvailability = lst[3].toInt(),
-                    productStock = lst[4].toInt(),
+                    productTotal = lst[2].toLong(),
+                    productAvailability = lst[3].toLong(),
+                    productStock = lst[4].toLong(),
                     productCategory = lst[5],
                     productCost = lst[6].toLong(),
                     productUserID = firebaseRepository.getSession()!!.uid,

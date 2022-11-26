@@ -33,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_email_provider"
+            android:id="@+id/tv_phone_provider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,21 +42,21 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/tv_telefono_provider"
+            app:layout_constraintBottom_toTopOf="@+id/tv_company_provider"
             app:layout_constraintEnd_toEndOf="@+id/tv_name_providers"
             app:layout_constraintStart_toStartOf="@+id/tv_name_providers"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_providers" />
 
         <TextView
-            android:id="@+id/tv_telefono_provider"
+            android:id="@+id/tv_company_provider"
             android:layout_width="362dp"
             android:layout_height="wrap_content"
             android:text="PRESENT EPISODE"
             android:textAlignment="center"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_email_provider"
-            app:layout_constraintStart_toStartOf="@+id/tv_email_provider" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_phone_provider"
+            app:layout_constraintStart_toStartOf="@+id/tv_phone_provider" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

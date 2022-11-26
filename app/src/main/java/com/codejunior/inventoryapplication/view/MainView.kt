@@ -1,6 +1,7 @@
 package com.codejunior.inventoryapplication.view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -106,7 +107,7 @@ class MainView : AppCompatActivity() {
                                 mainViewModel.navigation.postValue(Navigation.GO_PRODUCTS_VIEW)
                                 return@FragmentDialog
                             }
-                            mainViewModel.navigation.postValue(Navigation.GO_KARDEX_VIEW)
+                            Toast.makeText(context,"OPCION NO DISPONIBLE",Toast.LENGTH_LONG).show()
                         }).show(supportFragmentManager,"")
 
                     },

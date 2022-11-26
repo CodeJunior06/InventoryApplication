@@ -122,4 +122,10 @@ class FirebaseRepository @Inject constructor(
         }
     }
 
+    override suspend fun getAllProduct(): Task<QuerySnapshot> {
+        return withContext(dispatcher){
+            firebaseFirestore.collection(NameFirebase.TABLE_PRODUCT).get()
+        }
+    }
+
 }
