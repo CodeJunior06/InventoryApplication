@@ -68,7 +68,7 @@ class FragmentAddProviders : Fragment() {
             binding!!.edtNitProvider.editText?.text.toString(),
             binding!!.edtTelefonoProvider.editText?.text.toString(),
             binding!!.edtEmailProvider.editText?.text.toString(),
-            binding!!.edtAddress.editText?.text.toString()
+            binding!!.edtCompany.editText?.text.toString()
         )
         viewModelAddProviders.getDataView(lst)
     }

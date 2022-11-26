@@ -54,7 +54,7 @@ class CategoryModel @Inject constructor(private val firebaseRepository: Firebase
                     providerDocument = model.getString(NameFirebase.FIELD_PROVIDER_DOCUMENT)!!,
                     providerPhone = model.getString(NameFirebase.FIELD_PROVIDER_PHONE)!!,
                     providerEmail = model.getString(NameFirebase.FIELD_PROVIDER_EMAIL)!!,
-                    providerAddress = model.getString(NameFirebase.FIELD_PROVIDER_ADDRESS)!!,
+                    providerCompany = model.getString(NameFirebase.FIELD_PROVIDER_COMPANY)!!,
                     providerUserID = model.getString(NameFirebase.FIELD_PROVIDER_USER_ID)!!,
                 )
             )

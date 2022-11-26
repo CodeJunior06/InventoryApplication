@@ -130,23 +130,23 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tv_address"
+            android:id="@+id/tv_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="@string/address"
+            android:text="@string/company"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/edt_email_provider" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/edt_address"
+            android:id="@+id/edt_company"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address">
+            app:layout_constraintTop_toBottomOf="@+id/tv_company">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -161,9 +161,9 @@
             android:background="@drawable/shape_button"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/edt_address"
-            app:layout_constraintStart_toStartOf="@+id/edt_address"
-            app:layout_constraintTop_toBottomOf="@+id/edt_address" />
+            app:layout_constraintEnd_toEndOf="@+id/edt_company"
+            app:layout_constraintStart_toStartOf="@+id/edt_company"
+            app:layout_constraintTop_toBottomOf="@+id/edt_company" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

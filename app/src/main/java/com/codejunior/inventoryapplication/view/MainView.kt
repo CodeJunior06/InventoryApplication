@@ -11,6 +11,7 @@ import com.codejunior.inventoryapplication.databinding.ActivityMainBinding
 import com.codejunior.inventoryapplication.utils.extension.*
 import com.codejunior.inventoryapplication.utils.extension.intentProviderFromActivity
 import com.codejunior.inventoryapplication.view.adapter.model.ButtonData
+import com.codejunior.inventoryapplication.view.fragments.FragmentDialog
 import com.codejunior.inventoryapplication.viewmodel.Error
 import com.codejunior.inventoryapplication.viewmodel.MainViewModel
 import com.codejunior.inventoryapplication.viewmodel.Navigation
@@ -100,7 +101,14 @@ class MainView : AppCompatActivity() {
                         mainViewModel.navigation.postValue(Navigation.GO_CATEGORY_VIEW)
                     },
                     ButtonData(context.getString(R.string.products), R.drawable.product_icon) {
-                        mainViewModel.navigation.postValue(Navigation.GO_PRODUCTS_VIEW)
+                        FragmentDialog(onResponse = {
+                            if(it){
+                                mainViewModel.navigation.postValue(Navigation.GO_PRODUCTS_VIEW)
+                                return@FragmentDialog
+                            }
+                            mainViewModel.navigation.postValue(Navigation.GO_KARDEX_VIEW)
+                        }).show(supportFragmentManager,"")
+
                     },
                     ButtonData(context.getString(R.string.sales), R.drawable.ventas_icon) {
                         mainViewModel.navigation.postValue(Navigation.GO_SALE_VIEW)

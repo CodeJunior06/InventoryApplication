@@ -9,6 +9,6 @@ data class Provider(
     val providerDocument: String,
     val providerPhone: String,
     val providerEmail: String,
-    val providerAddress: String,
+    val providerCompany: String,
     val providerUserID:String
 )
